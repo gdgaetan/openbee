@@ -11,8 +11,8 @@ fi
 
 echo "[*] Installation des logiciels nécessaires au programme: $SOFTWARES"
 
-#apt-get update
-#apt-get install -y $SOFTWARES
+apt-get update
+apt-get install -y $SOFTWARES
 
 echo "[*] Répertoire de configuration de motion: $MOTION_DIR"
 echo "[*] Décompression du projet dans $WWW_DIR ..."
@@ -32,5 +32,9 @@ echo "stream_maxrate 30" >> $MOTION_DIR/motion.conf
 echo "stream_port 8081" >> $MOTION_DIR/motion.conf
 echo "stream_localhost off" >> $MOTION_DIR/motion.conf
 echo "output_pictures off" >> $MOTION_DIR/motion.conf
+
+mkdir /var/run/motion
+chown motion:motion /var/run/motion/ -R
+chmod 777 /var/run/motion/ -R
 
 echo "[+] Installation terminée. Pensez à lancer motion pour avoir le flux vidéo."
