@@ -1,4 +1,8 @@
+<div id="myChart" style="width:100%; height:400px;"></div>
+
 <?php
+
+echo '<script>alert("PHP");</script>';
 
 // connexion à la base de données
 try
@@ -11,6 +15,58 @@ catch(Exception $e)
 	die('Erreur : '.$e->getMessage());
 }
 
+// dès le début, on récupère le contenu des formulaires
+// (+ valeurs par défaut, avec isset)
+
+// quel intervalle à afficher ?
+// récupérer la date actuelle (date de fin à afficher)
+$timezone = new DateTimeZone("Europe/Paris");
+$dateFin = new DateTime();
+$dateFin->setTimezone( $timezone );
+
+// calculer la (date de début à afficher, par défaut : la dernière heure)
+$dateDebut = new DateTime();
+$dateDebut->setTimezone( $timezone );
+$dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
+
+$granularite = "minute";
+
+// avec le formulaire rempli
+if(!empty($_POST["selectDateFin"]) && !empty($_POST["selectDateDebut"]))
+{
+	$dateFin = new DateTime($_POST["selectDateFin"]);
+	$dateDebut = new DateTime($_POST["selectDateDebut"]);
+	if (!empty($_POST["selectGranularite"]))
+	{
+		switch ($_POST["selectGranularite"]) {
+			case "heure":
+				$granularite = "heure";
+				break;
+			case "jour":
+				$granularite = "jour";
+				break;
+			case "semaine":
+				$granularite = "semaine";
+				break;
+			case "mois":
+				$granularite = "mois";
+				break;
+			case "annee":
+				$granularite = "annee";
+				break;
+			default: // minute
+			   $granularite = "minute";
+		}
+	}
+
+}
+
+// on a besoin de chaînes de caractères
+$fin = $dateFin->format('Y-m-d H:i:s');
+$debut = $dateDebut->format('Y-m-d H:i:s');
+
+getDonnees($debut, $fin, $granularite); // page onload
+
 
 /**
 récupérer les données dans la bdd et afficher les graphiques avec ces nouvelles données
@@ -20,6 +76,7 @@ il faudra apporter des modifications à graphiques.js
 */
 function getDonnees($dateDebut, $dateFin, $granularite){
 	global $bdd;
+echo '<script>alert("getDonnees()");</script>';
 	//$reponse = $bdd->query('SELECT * FROM abeille'); // récupère toutes les données
 	//$reponse = $bdd->query("SELECT * from abeille WHERE dateEnregistrement BETWEEN '2017-03-21 11:00:00' AND '2017-03-21 15:00:00'"); // exemple avec les dates "en dur"
 	$reponse = $bdd->query("SELECT * from abeille WHERE dateEnregistrement BETWEEN '".$dateDebut."' AND '".$dateFin."'");

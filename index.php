@@ -1,27 +1,4 @@
 <!DOCTYPE html>
-<?php
-	
-	include 'graphiques.php';
-
-	/*
-	on envoie une variable cachée avec le formulaire
-	au démarrage, elle n'existe pas, on donne les valeurs par défaut
-	sinon, on lit ce qu'il y a dans le formulaire, etc.
-	*/
-	
-	//echo "<script>
-	//	chartAbeille.destroy();
-	//</script>";
-	
-	/*echo "getDonnees---------";
-	getDonnees('2017-03-21 11:00:00', '2017-03-21 15:00:00');*/
-	
-	/*echo "<script>
-		chartAbeille.update();
-	</script>";
-	//header('Location: index.php');*/
-
-?>
 
 <html lang="fr">
 	<head>
@@ -34,8 +11,40 @@
 		<link href="style.css" rel="stylesheet" type="text/css" />
 		<script src="highcharts.js"></script>
 		<script src="graphiques.js"></script>
+		<script src="jquery-3.2.1.min.js"></script>
 		
 		<title>Test pour les graphiques</title>	
+		
+		<script type="text/javascript">
+			function writediv(texte, endroit)
+			{
+				alert(endroit);
+				alert(texte);
+				document.getElementById(endroit).innerHTML = texte;
+			}
+			function afficher()
+			{
+				if(texte = file('graphiques.php'))
+				{
+					writediv(texte, 'chart1');
+				}
+			}
+			function file(fichier)
+			{
+				if(window.XMLHttpRequest) // FIREFOX
+				xhr_object = new XMLHttpRequest();
+				else if(window.ActiveXObject) // IE
+				xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
+				else
+				return(false);
+				xhr_object.open("GET", fichier, false);
+				xhr_object.send(null);
+				if(xhr_object.readyState == 4) return(xhr_object.responseText);
+				else return(false);
+			}
+			afficher();
+		</script>
+  
 	</head>
 	
 	<body>
@@ -91,6 +100,9 @@
 			</div>
 				
 			<div class="chartTest">
+
+				<div id="chart1"></div>
+
 				<div id="myChart" style="width:100%; height:400px;"></div>
 				
 				<?php
@@ -152,9 +164,10 @@
 					
 					getDonnees($debut, $fin, $granularite); // page onload
 				?>		
+
 				
 				<!-- des boutons... -->
-				<form method="post" action="index.php">
+				<form action="index.php" method="post">
 					<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
 					<input type="datetime-local" name="selectDateDebut" />
 					<input type="datetime-local" name="selectDateFin" />
@@ -167,15 +180,32 @@
 						<option value="mois">Mois</option>
 						<option value="annee">Année</option>
 					</select>
-					<input type="submit" name="update" value="Mettre à jour" />
+					<button type="submit" id="update">Mettre à jour</button>
 				</form>
 				
+
+				<script>
+					/*$(function() {
+						$('#update').click(function() {
+							alert("click OK");
+							$("#myChart").load("graphiques.php", {
+								selectDateDebut:$("selectDateDebut").val(),
+								selectDateFin:$("selectDateFin").val(),
+								selectGranularite:$("selectGranularite").val()
+							});
+						}); 
+					});*/
+					$(function() {
+						$('#update').click(afficher()); 
+					});
+				</script>
+
 				<button onclick="saveImg()">Enregistrer le graphique</button>
+
 				
 				<form method="post" action="generate.php">
 					<input type="submit" name="generator" value="Generate 100000" />
 				</form>
-				
 				
 				<!--
 					bouton pour enregistrer le canvas en image (sachant que le clic droit fonctionne aussi)
@@ -211,6 +241,7 @@
 
 					});
 				</script>-->
+
 			
 			</div>
 		
