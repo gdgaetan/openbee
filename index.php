@@ -1,27 +1,4 @@
 <!DOCTYPE html>
-<?php
-	
-	include 'graphiques.php';
-
-	/*
-	on envoie une variable cachée avec le formulaire
-	au démarrage, elle n'existe pas, on donne les valeurs par défaut
-	sinon, on lit ce qu'il y a dans le formulaire, etc.
-	*/
-	
-	//echo "<script>
-	//	chartAbeille.destroy();
-	//</script>";
-	
-	/*echo "getDonnees---------";
-	getDonnees('2017-03-21 11:00:00', '2017-03-21 15:00:00');*/
-	
-	/*echo "<script>
-		chartAbeille.update();
-	</script>";
-	//header('Location: index.php');*/
-
-?>
 
 <html lang="fr">
 	<head>
@@ -32,10 +9,42 @@
 		<!--<link rel="icon" type="image/png" href="img/favicon.png" />-->
 		
 		<link href="style.css" rel="stylesheet" type="text/css" />
-		<script src="Chart.bundle.min.js"></script>
+		<script src="highcharts.js"></script>
 		<script src="graphiques.js"></script>
+		<script src="jquery-3.2.1.min.js"></script>
 		
 		<title>Test pour les graphiques</title>	
+		
+		<script type="text/javascript">
+			function writediv(texte, endroit)
+			{
+				alert(endroit);
+				alert(texte);
+				document.getElementById(endroit).innerHTML = texte;
+			}
+			function afficher()
+			{
+				if(texte = file('graphiques.php'))
+				{
+					writediv(texte, 'chart1');
+				}
+			}
+			function file(fichier)
+			{
+				if(window.XMLHttpRequest) // FIREFOX
+				xhr_object = new XMLHttpRequest();
+				else if(window.ActiveXObject) // IE
+				xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
+				else
+				return(false);
+				xhr_object.open("GET", fichier, false);
+				xhr_object.send(null);
+				if(xhr_object.readyState == 4) return(xhr_object.responseText);
+				else return(false);
+			}
+			afficher();
+		</script>
+  
 	</head>
 	
 	<body>
@@ -91,70 +100,10 @@
 			</div>
 				
 			<div class="chartTest">
-				<canvas id="myChart"></canvas>	
-				
-				<?php
-				// dès le début, on récupère le contenu des formulaires
-				// (+ valeurs par défaut, avec isset)
-					
-					// quel intervalle à afficher ?
-					// récupérer la date actuelle (date de fin à afficher)
-					$timezone = new DateTimeZone("Europe/Paris");
-					$dateFin = new DateTime();
-					$dateFin->setTimezone( $timezone );
-					
-					// calculer la (date de début à afficher, par défaut : la dernière heure)
-					$dateDebut = new DateTime();
-					$dateDebut->setTimezone( $timezone );
-					$dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
-					
-					$granularite = "minute";
-					
-					// avec le formulaire rempli
-					if(isset($_POST["update"]))
-					{
-						if (!empty($_POST["selectDateFin"]))
-						{
-							$dateFin = new DateTime($_POST["selectDateFin"]);
-						}
-						if (!empty($_POST["selectDateDebut"]))
-						{
-							$dateDebut = new DateTime($_POST["selectDateDebut"]);
-						}
-						if (!empty($_POST["selectGranularite"]))
-						{
-							switch ($_POST["selectGranularite"]) {
-								case "heure":
-									$granularite = "heure";
-									break;
-								case "jour":
-									$granularite = "jour";
-									break;
-								case "semaine":
-									$granularite = "semaine";
-									break;
-								case "mois":
-									$granularite = "mois";
-									break;
-								case "annee":
-									$granularite = "annee";
-									break;
-								default: // minute
-								   $granularite = "minute";
-							}
-						}
-					
-					}
-					
-					// on a besoin de chaînes de caractères
-					$fin = $dateFin->format('Y-m-d H:i:s');
-					$debut = $dateDebut->format('Y-m-d H:i:s');
-					
-					getDonnees($debut, $fin, $granularite); // page onload
-				?>		
+				<div id="chart1"></div>
 				
 				<!-- des boutons... -->
-				<form method="post" action="index.php">
+				<form action="index.php" method="post">
 					<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
 					<input type="datetime-local" name="selectDateDebut" />
 					<input type="datetime-local" name="selectDateFin" />
@@ -167,41 +116,29 @@
 						<option value="mois">Mois</option>
 						<option value="annee">Année</option>
 					</select>
-					<input type="submit" name="update" value="Mettre à jour" />
+					<button type="submit" id="update">Mettre à jour</button>
 				</form>
+				
+				<script>
+					/*$(function() {
+						$('#update').click(function() {
+							alert("click OK");
+							$("#myChart").load("graphiques.php", {
+								selectDateDebut:$("selectDateDebut").val(),
+								selectDateFin:$("selectDateFin").val(),
+								selectGranularite:$("selectGranularite").val()
+							});
+						}); 
+					});*/
+					$(function() {
+						$('#update').click(afficher()); 
+					});
+				</script>
+				
 				<form method="post" action="generate.php">
 					<input type="submit" name="generator" value="Generate 100000" />
 				</form>
 				
-				
-				<!--<script>
-					var element = document.getElementById('update');
-
-					element.addEventListener('click', function() {
-						alert("chart update...");
-						
-						// MODIFIER LE GRAPHE
-						// (changer les dates, l'échelle, etc.)
-					
-						//myChart.labels = ["1","2","3"];
-						//myChart.data.labels = ["1","2","3"];
-						//myChart.data.datasets[0].data = [1,2,3];
-						//myChart.data.datasets[1].data = [4,5,6];
-						//myChart.data.datasets[2].data = [7,8,9];
-						
-						//myChart.data.datasets[0].data[2] = 50;
-						
-						//myChart.update();
-						//getDonnees(); // fonction php... TODO
-						
-						/*myChart.destroy();
-						var ctx = document.getElementById("myChartLine").getContext("2d");
-						myChart = new Chart(ctx).Line(data, options);*/
-						
-						
-
-					});
-				</script>-->
 			
 			</div>
 		

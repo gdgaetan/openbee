@@ -11,7 +11,7 @@
 		- différence entrées/sorties
 		(on peut ajouter : pollen, faux bourdon -> décommenter les lignes correspondantes, adapter les couleurs, )
 */
-function drawChart(labelsX, donnees)
+function drawChartOld(labelsX, donnees)
 {
 	var ctx = document.getElementById("myChart").getContext("2d");
 	
@@ -96,30 +96,42 @@ function drawChart(labelsX, donnees)
 	
 }
 
-
-var element = document.getElementById('clickme');
-
-element.addEventListener('click', function() {
-	getDonnees(); // fonction php... TODO
-	alert("click");
-});
-
-
-
-/**
-	sera lancée au chargement de la page
-	plage de dates par défaut à déterminer
-*/
-/*function init_graph()
-{
-	<?php
-		include graphiques.php;
-	?>
-
-	getDonnees();
-	var labels = new Array("1","2","3","4","5","6","7");
-	var donnees0 = new Array(65, 59, 80, 81, 56, 55, 40);
-	var donnees1 = new Array(2, 29, 5, 5, 2, 3, 10);
-	var donnees = new Array(donnees0, donnees1);
-	drawChart(labels, donnees);
-}*/
+// export -> http://a----.github.io/highcharts-export-clientside/#installation
+// https://www.highcharts.com/plugin-registry/single/37/highcharts-export-clientside
+// https://www.highcharts.com/docs/export-module/client-side-export
+function drawChart(labelsX, donnees) {
+	var theChart = Highcharts.chart('myChart', {
+		chart: {
+			zoomType: 'x'
+		},
+		title: {
+			text: 'Entrées-sorties des abeilles'
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'right',
+			verticalAlign: 'middle'
+		},
+		xAxis: {
+			categories: labelsX
+		},
+		yAxis: {
+			title: {
+				text: 'Nombre d\'abeilles'
+			}
+		},
+		series: [{
+			name: 'Abeilles entrantes',
+			data: donnees[0],
+			color: '#86FE3A'
+		}, {
+			name: 'Abeilles sortantes',
+			data: donnees[1],
+			color: '#F1261A'
+		}, {
+			name: 'Différence entrées-sorties',
+			data: donnees[2],
+			color: '#394E71'
+		}]
+	});
+}
