@@ -20,7 +20,7 @@
 
 	<title>Test pour les graphiques</title>	
 </head>
-<body style="marging-top :50 px">
+<body style="marging-top :100 px">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
