@@ -37,102 +37,16 @@
 	</ul>
   </div>
 </nav>
-<?php
-	
-	include 'graphiques.php';
-
-	/*
-	on envoie une variable cachée avec le formulaire
-	au démarrage, elle n'existe pas, on donne les valeurs par défaut
-	sinon, on lit ce qu'il y a dans le formulaire, etc.
-	*/
-	
-	//echo "<script>
-	//	chartAbeille.destroy();
-	//</script>";
-	
-	/*echo "getDonnees---------";
-	getDonnees('2017-03-21 11:00:00', '2017-03-21 15:00:00');*/
-	
-	/*echo "<script>
-		chartAbeille.update();
-	</script>";
-	//header('Location: index.php');*/
-
-?>
 
 <html lang="fr">
-	
-		
-				
-				
-				
+					
 			<div class="chartTest">
-				<div id="myChart" style="width:100%; height:400px;"></div>
-				
-				<?php
-				// dès le début, on récupère le contenu des formulaires
-				// (+ valeurs par défaut, avec isset)
+				<div id="chart1"></div>
 					
-					// quel intervalle à afficher ?
-					// récupérer la date actuelle (date de fin à afficher)
-					$timezone = new DateTimeZone("Europe/Paris");
-					$dateFin = new DateTime();
-					$dateFin->setTimezone( $timezone );
-					
-					// calculer la (date de début à afficher, par défaut : la dernière heure)
-					$dateDebut = new DateTime();
-					$dateDebut->setTimezone( $timezone );
-					$dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
-					
-					$granularite = "minute";
-					
-					// avec le formulaire rempli
-					if(isset($_POST["update"]))
-					{
-						if (!empty($_POST["selectDateFin"]))
-						{
-							$dateFin = new DateTime($_POST["selectDateFin"]);
-						}
-						if (!empty($_POST["selectDateDebut"]))
-						{
-							$dateDebut = new DateTime($_POST["selectDateDebut"]);
-						}
-						if (!empty($_POST["selectGranularite"]))
-						{
-							switch ($_POST["selectGranularite"]) {
-								case "heure":
-									$granularite = "heure";
-									break;
-								case "jour":
-									$granularite = "jour";
-									break;
-								case "semaine":
-									$granularite = "semaine";
-									break;
-								case "mois":
-									$granularite = "mois";
-									break;
-								case "annee":
-									$granularite = "annee";
-									break;
-								default: // minute
-								   $granularite = "minute";
-							}
-						}
-					
-					}
-					
-					// on a besoin de chaînes de caractères
-					$fin = $dateFin->format('Y-m-d H:i:s');
-					$debut = $dateDebut->format('Y-m-d H:i:s');
-					
-					getDonnees($debut, $fin, $granularite); // page onload
-				?>		
 				
 				<!-- des boutons... -->
-				<form method="post" action="graphe.php">
-					<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
+				<form method="post">
+					<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte... format à préciser -->
 					<input type="datetime-local" name="selectDateDebut" />
 					<input type="datetime-local" name="selectDateFin" />
 					<span id="lblGranul">Granularité</span>
@@ -144,12 +58,31 @@
 						<option value="mois">Mois</option>
 						<option value="annee">Année</option>
 					</select>
-					<input type="submit" name="update" value="Mettre à jour" />
 				</form>
+				<input type="submit" name="update" value="Mettre à jour" />
+				
+				
+				<script>
+					// mettre à jour les graphiques
+					$(function() {
+						$('#update').click(function() {
+							alert("click OK");
+							$("#chart1").load("graphiques.php", {
+								selectDateDebut:$("selectDateDebut").val(),
+								selectDateFin:$("selectDateFin").val(),
+								selectGranularite:$("selectGranularite").val()
+							});
+						}); 
+					});
+					
+					// page onload
+					$("#chart1").load("graphiques.php", {
+						selectDateDebut:$("selectDateDebut").val(),
+						selectDateFin:$("selectDateFin").val(),
+						selectGranularite:$("selectGranularite").val()
+					});
+				</script>
 
-				
-				
-			
 			</div>
 		
 		</div>
@@ -158,4 +91,3 @@
 
 </html>
 </body>
-

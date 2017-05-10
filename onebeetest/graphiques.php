@@ -1,12 +1,65 @@
-<?php
+<div id="myChart" style="width:100%; height:400px;"></div>
 
+<?php
 // connexion à la base de données
 include 'connection.php';
 
 
+// dès le début, on récupère le contenu des formulaires
+// (+ valeurs par défaut, avec isset)
+
+// quel intervalle à afficher ?
+// récupérer la date actuelle (date de fin à afficher)
+$timezone = new DateTimeZone("Europe/Paris");
+$dateFin = new DateTime();
+$dateFin->setTimezone( $timezone );
+
+// calculer la (date de début à afficher, par défaut : la dernière heure)
+$dateDebut = new DateTime();
+$dateDebut->setTimezone( $timezone );
+$dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
+
+$granularite = "minute";
+
+// avec le formulaire rempli
+if(!empty($_POST["selectDateFin"]) && !empty($_POST["selectDateDebut"]))
+{
+	$dateFin = new DateTime($_POST["selectDateFin"]);
+	$dateDebut = new DateTime($_POST["selectDateDebut"]);
+	if (!empty($_POST["selectGranularite"]))
+	{
+		switch ($_POST["selectGranularite"]) {
+			case "heure":
+				$granularite = "heure";
+				break;
+			case "jour":
+				$granularite = "jour";
+				break;
+			case "semaine":
+				$granularite = "semaine";
+				break;
+			case "mois":
+				$granularite = "mois";
+				break;
+			case "annee":
+				$granularite = "annee";
+				break;
+			default: // minute
+			   $granularite = "minute";
+		}
+	}
+
+}
+
+// on a besoin de chaînes de caractères
+$fin = $dateFin->format('Y-m-d H:i:s');
+$debut = $dateDebut->format('Y-m-d H:i:s');
+
+getDonnees($debut, $fin, $granularite);
+
+
 /**
 récupérer les données dans la bdd et afficher les graphiques avec ces nouvelles données
-
 pour rajouter les abeilles pollen/faux bourdon, les lignes de code nécessaires sont déjà présentes, mais commentées
 il faudra apporter des modifications à graphiques.js
 */
