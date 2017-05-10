@@ -100,7 +100,7 @@ function drawChartOld(labelsX, donnees)
 // https://www.highcharts.com/plugin-registry/single/37/highcharts-export-clientside
 // https://www.highcharts.com/docs/export-module/client-side-export
 function drawChart(labelsX, donnees) {
-alert("drawChart");
+console.log("drawChart");
 	var theChart = Highcharts.chart('myChart', {
 		chart: {
 			zoomType: 'x'

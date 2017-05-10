@@ -18,8 +18,8 @@
 		<!--<script type="text/javascript">
 			function writediv(texte, endroit)
 			{
-				alert(endroit);
-				alert(texte);
+				console.log(endroit);
+				console.log(texte);
 				document.getElementById(endroit).innerHTML = texte;
 			}
 			function afficher()
@@ -120,19 +120,25 @@
 				</form>
 				
 				<script>
-					$(function() {
+	/*				$(function() {
 						$('#update').click(function() {
-							alert("click OK");
+							console.log("click OK");
 							$("#chart1").load("graphiques.php", {
 								selectDateDebut:$("selectDateDebut").val(),
 								selectDateFin:$("selectDateFin").val(),
 								selectGranularite:$("selectGranularite").val()
 							});
 						}); 
+
 					});/*
 					$(function() {
 						$('#update').click(afficher()); 
 					});*/
+$("#chart1").load("graphiques.php", {
+								selectDateDebut:$("selectDateDebut").val(),
+								selectDateFin:$("selectDateFin").val(),
+								selectGranularite:$("selectGranularite").val()
+							});
 				</script>
 				
 				<form method="post" action="generate.php">

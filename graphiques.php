@@ -2,18 +2,9 @@
 
 <?php
 
-echo '<script>alert("PHP");</script>';
+echo '<script>console.log("PHP");</script>';
 
-// connexion à la base de données
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=testonebee', 'root', '');
-}
-catch(Exception $e)
-{
-	// erreur
-	die('Erreur : '.$e->getMessage());
-}
+include "onebee/connection.php";
 
 // dès le début, on récupère le contenu des formulaires
 // (+ valeurs par défaut, avec isset)
@@ -76,7 +67,7 @@ il faudra apporter des modifications à graphiques.js
 */
 function getDonnees($dateDebut, $dateFin, $granularite){
 	global $bdd;
-echo '<script>alert("getDonnees()");</script>';
+echo '<script>console.log("getDonnees()");</script>';
 	//$reponse = $bdd->query('SELECT * FROM abeille'); // récupère toutes les données
 	//$reponse = $bdd->query("SELECT * from abeille WHERE dateEnregistrement BETWEEN '2017-03-21 11:00:00' AND '2017-03-21 15:00:00'"); // exemple avec les dates "en dur"
 	$reponse = $bdd->query("SELECT * from abeille WHERE dateEnregistrement BETWEEN '".$dateDebut."' AND '".$dateFin."'");
