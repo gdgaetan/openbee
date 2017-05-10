@@ -15,7 +15,7 @@
 		
 		<title>Test pour les graphiques</title>	
 		
-		<script type="text/javascript">
+		<!--<script type="text/javascript">
 			function writediv(texte, endroit)
 			{
 				alert(endroit);
@@ -43,7 +43,7 @@
 				else return(false);
 			}
 			afficher();
-		</script>
+		</script>-->
   
 	</head>
 	
@@ -100,74 +100,10 @@
 			</div>
 				
 			<div class="chartTest">
-
-				<div id="chart1"></div>
-
-				<div id="myChart" style="width:100%; height:400px;"></div>
-				
-				<?php
-				// dès le début, on récupère le contenu des formulaires
-				// (+ valeurs par défaut, avec isset)
-					
-					// quel intervalle à afficher ?
-					// récupérer la date actuelle (date de fin à afficher)
-					$timezone = new DateTimeZone("Europe/Paris");
-					$dateFin = new DateTime();
-					$dateFin->setTimezone( $timezone );
-					
-					// calculer la (date de début à afficher, par défaut : la dernière heure)
-					$dateDebut = new DateTime();
-					$dateDebut->setTimezone( $timezone );
-					$dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
-					
-					$granularite = "minute";
-					
-					// avec le formulaire rempli
-					if(isset($_POST["update"]))
-					{
-						if (!empty($_POST["selectDateFin"]))
-						{
-							$dateFin = new DateTime($_POST["selectDateFin"]);
-						}
-						if (!empty($_POST["selectDateDebut"]))
-						{
-							$dateDebut = new DateTime($_POST["selectDateDebut"]);
-						}
-						if (!empty($_POST["selectGranularite"]))
-						{
-							switch ($_POST["selectGranularite"]) {
-								case "heure":
-									$granularite = "heure";
-									break;
-								case "jour":
-									$granularite = "jour";
-									break;
-								case "semaine":
-									$granularite = "semaine";
-									break;
-								case "mois":
-									$granularite = "mois";
-									break;
-								case "annee":
-									$granularite = "annee";
-									break;
-								default: // minute
-								   $granularite = "minute";
-							}
-						}
-					
-					}
-					
-					// on a besoin de chaînes de caractères
-					$fin = $dateFin->format('Y-m-d H:i:s');
-					$debut = $dateDebut->format('Y-m-d H:i:s');
-					
-					getDonnees($debut, $fin, $granularite); // page onload
-				?>		
-
+				<div id="chart1"><p>test</p></div>
 				
 				<!-- des boutons... -->
-				<form action="index.php" method="post">
+				<form method="post">
 					<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
 					<input type="datetime-local" name="selectDateDebut" />
 					<input type="datetime-local" name="selectDateFin" />
@@ -180,68 +116,29 @@
 						<option value="mois">Mois</option>
 						<option value="annee">Année</option>
 					</select>
-					<button type="submit" id="update">Mettre à jour</button>
+					<button id="update">Mettre à jour</button>
 				</form>
 				
-
 				<script>
-					/*$(function() {
+					$(function() {
 						$('#update').click(function() {
 							alert("click OK");
-							$("#myChart").load("graphiques.php", {
+							$("#chart1").load("graphiques.php", {
 								selectDateDebut:$("selectDateDebut").val(),
 								selectDateFin:$("selectDateFin").val(),
 								selectGranularite:$("selectGranularite").val()
 							});
 						}); 
-					});*/
+					});/*
 					$(function() {
 						$('#update').click(afficher()); 
-					});
+					});*/
 				</script>
-
-				<button onclick="saveImg()">Enregistrer le graphique</button>
-
 				
 				<form method="post" action="generate.php">
 					<input type="submit" name="generator" value="Generate 100000" />
 				</form>
 				
-				<!--
-					bouton pour enregistrer le canvas en image (sachant que le clic droit fonctionne aussi)
-					http://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
-				-->
-				
-				
-				<!--<script>
-					var element = document.getElementById('update');
-
-					element.addEventListener('click', function() {
-						alert("chart update...");
-						
-						// MODIFIER LE GRAPHE
-						// (changer les dates, l'échelle, etc.)
-					
-						//myChart.labels = ["1","2","3"];
-						//myChart.data.labels = ["1","2","3"];
-						//myChart.data.datasets[0].data = [1,2,3];
-						//myChart.data.datasets[1].data = [4,5,6];
-						//myChart.data.datasets[2].data = [7,8,9];
-						
-						//myChart.data.datasets[0].data[2] = 50;
-						
-						//myChart.update();
-						//getDonnees(); // fonction php... TODO
-						
-						/*myChart.destroy();
-						var ctx = document.getElementById("myChartLine").getContext("2d");
-						myChart = new Chart(ctx).Line(data, options);*/
-						
-						
-
-					});
-				</script>-->
-
 			
 			</div>
 		

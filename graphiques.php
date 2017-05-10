@@ -65,7 +65,7 @@ if(!empty($_POST["selectDateFin"]) && !empty($_POST["selectDateDebut"]))
 $fin = $dateFin->format('Y-m-d H:i:s');
 $debut = $dateDebut->format('Y-m-d H:i:s');
 
-getDonnees($debut, $fin, $granularite); // page onload
+getDonnees($debut, $fin, $granularite);
 
 
 /**
