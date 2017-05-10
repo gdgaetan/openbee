@@ -1,5 +1,5 @@
 /**
-	dessiner les graphiques dans le canvas myChart
+	dessiner les graphiques dans le la div myChart
 	labelsX = graduation abscisse
 	donnees = array de 2 arrays (un par courbe)
 	
@@ -9,96 +9,8 @@
 		- abeilles entrantes
 		- abeilles sortantes
 		- différence entrées/sorties
-		(on peut ajouter : pollen, faux bourdon -> décommenter les lignes correspondantes, adapter les couleurs, )
+		(on peut ajouter : pollen, faux bourdon -> même principe que pour toutes les séries, penser à rajouter les données dans le tableau en paramètres )
 */
-function drawChartOld(labelsX, donnees)
-{
-	var ctx = document.getElementById("myChart").getContext("2d");
-	
-	var chartAbeille = new Chart(ctx, {
-		type: 'line',
-		
-		data: {
-			labels: labelsX,
-			datasets: [{
-				label: 'Abeilles entrantes',
-				data: donnees[0],
-				fill: false,
-				backgroundColor: "rgba(0,255,0,0.1)",
-				borderColor: "rgba(0,255,0,1)",
-				borderWidth: 2,
-				tension: 0
-			},{
-				label: 'Abeilles sortantes',
-				data: donnees[1],
-				fill: false,
-				backgroundColor: "rgba(255,0,0,0.1)",
-				borderColor: "rgba(255,0,0,1)",
-				borderWidth: 2,
-				tension: 0
-			},{/*
-				label: 'Abeilles "Pollen" entrantes',
-				data: donnees[2],
-				fill: false,
-				backgroundColor: "rgba(255,0,0,1)",
-				borderColor: "rgba(255,0,0,1)",
-				borderWidth: 2,
-				tension: 0
-			},{
-				label: 'Abeilles "Pollen" sortantes',
-				data: donnees[3],
-				fill: false,
-				backgroundColor: "rgba(255,0,0,1)",
-				borderColor: "rgba(255,0,0,1)",
-				borderWidth: 2,
-				tension: 0
-			},{
-				label: 'Abeilles "Faux bourdon" entrantes',
-				data: donnees[4],
-				fill: false,
-				backgroundColor: "rgba(255,0,0,1)",
-				borderColor: "rgba(255,0,0,1)",
-				borderWidth: 2,
-				tension: 0
-			},{
-				label: 'Abeilles "Faux bourdon" sortantes',
-				data: donnees[5],
-				fill: false,
-				backgroundColor: "rgba(255,0,0,1)",
-				borderColor: "rgba(255,0,0,1)",
-				borderWidth: 2,
-				tension: 0
-			},{*/
-				label: 'Différence entrées/sorties',
-				data: donnees[2], // modifier le '2' avec l'ajout de nouvelles séries de données
-				fill: true,
-				backgroundColor: "rgba(0,0,255,0.1)",
-				borderColor: "rgba(0,0,255,1)",
-				borderWidth: 2,
-				tension: 0
-			}]
-		},
-		
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			/*scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero:true,
-						//min: 0,
-						//max: 100
-					}
-				}]
-			}*/
-		}
-	});
-	
-}
-
-// export -> http://a----.github.io/highcharts-export-clientside/#installation
-// https://www.highcharts.com/plugin-registry/single/37/highcharts-export-clientside
-// https://www.highcharts.com/docs/export-module/client-side-export
 function drawChart(labelsX, donnees) {
 	var theChart = Highcharts.chart('myChart', {
 		chart: {
@@ -121,17 +33,21 @@ function drawChart(labelsX, donnees) {
 			}
 		},
 		series: [{
+			type: 'spline',
 			name: 'Abeilles entrantes',
 			data: donnees[0],
-			color: '#86FE3A'
+			color: '#B7EB34'
 		}, {
+			type: 'spline',
 			name: 'Abeilles sortantes',
 			data: donnees[1],
-			color: '#F1261A'
+			color: '#EC2655'
 		}, {
+			type: 'areaspline',
 			name: 'Différence entrées-sorties',
 			data: donnees[2],
-			color: '#394E71'
+			color: '#4AC5EB',
+			fillColor: 'rgba(74, 197, 235, .2)'
 		}]
 	});
 }
