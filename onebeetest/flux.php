@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="bootstrap.min.css" rel="stylesheet">
+  <script src="jquery-3.2.1.min.js"></script>
+  <script src="bootstrap.min.js"></script>
   <script type="text/javascript">
 		function writediv(texte, endroit)
 		{
@@ -38,14 +40,20 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 		<div class="navbar-header">
-		  <span class="navbar-brand">One Bee</span>
-		</div>
-		<ul class="nav navbar-nav">
-		  <li><a href="index.php">ACCUEIL</a></li>
+		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <span class="navbar-brand">One Bee</span>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.php">ACCUEIL</a></li>
 		  <li><a href="graphe.php">GRAPHIQUE</a></li>
 		  <li class="active"><a href="flux.php">FLUX VIDEO</a></li>
-		</ul>
-		 <ul class="nav navbar-nav navbar-right">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
 		  <li><a href="#">REDEMARER</a></li>
 		</ul>
 	  </div>
@@ -63,11 +71,8 @@
 	}
 	// Permet d'afficher le flux vidéo de motion sur une page web.
 	// N'oubliez pas de configurer l'adresse IP et le port correctement.
-
-	//<img alt="http://127.0.0.1:8081/" src="http://127.0.0.1:8081/">
-
-
 	?>
+	<!--<img alt="http://127.0.0.1:8081/" src="http://127.0.0.1:8081/">-->
 	<form action="flux.php" method="post">
 	date de début (aaaa-mm-jjThh:mm)</br>
 	<input type="datetime-local" name="debut">
