@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-echo "Generating...";
+	echo "Generating...";
 
-include 'connection.php';
+	include 'connection.php';
 
         echo "working... <br/>";
 		$bdd->query('DELETE FROM abeille');

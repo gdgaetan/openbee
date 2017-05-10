@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html lang="fr">
 <head>
   <title>One Bee - Graphique</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+	<meta name="description" content="Quelle belle description !" />
+	<meta name="author" content="Solène Demars" />
+	<!-- Shortcut Icon -->
+	<!--<link rel="icon" type="image/png" href="img/favicon.png" />-->
+
+	<link href="graphe.css" rel="stylesheet" type="text/css" />
+	<script src="highcharts.js"></script>
+	<script src="graphiques.js"></script>
+	<script src="exporting.js"></script>
+	<script src="canvas-tools.js"></script>
+	<script src="jspdf.min.js"></script>
+	<script src="highcharts-export-clientside.js"></script>
+
+	<title>Test pour les graphiques</title>	
 </head>
-<body>
+<body style="marging-top :50 px">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <span class="navbar-brand">One Bee</span>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="index.php">ACCUEIL</a></li>
-      <li class="active"><a href="graphe.php">GRAPHIQUE</a></li>
-      <li><a href="flux.php">FLUX VIDEO</a></li>
-    </ul>
+	<div class="navbar-header">
+	  <span class="navbar-brand">One Bee</span>
+	</div>
+	<ul class="nav navbar-nav">
+	  <li><a href="index.php">ACCUEIL</a></li>
+	  <li class="active"><a href="graphe.php">GRAPHIQUE</a></li>
+	  <li><a href="flux.php">FLUX VIDEO</a></li>
+	</ul>
 	 <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">REDEMARER</a></li>
-    </ul>
+	  <li><a href="#">REDEMARER</a></li>
+	</ul>
   </div>
 </nav>
 <?php
@@ -49,21 +62,7 @@
 ?>
 
 <html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="description" content="Quelle belle description !" />
-		<meta name="author" content="Solène Demars" />
-		<!-- Shortcut Icon -->
-		<!--<link rel="icon" type="image/png" href="img/favicon.png" />-->
-		
-		<link href="style.css" rel="stylesheet" type="text/css" />
-		<script src="highcharts.js"></script>
-		<script src="graphiques.js"></script>
-		
-		<title>Test pour les graphiques</title>	
-	</head>
 	
-	<body>
 		
 				
 				
@@ -147,45 +146,9 @@
 					</select>
 					<input type="submit" name="update" value="Mettre à jour" />
 				</form>
-				
-				<button onclick="saveImg()">Enregistrer le graphique</button>
-				
-				
-				
-				<!--
-					bouton pour enregistrer le canvas en image (sachant que le clic droit fonctionne aussi)
-					http://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
-				-->
-				
-				
-				<!--<script>
-					var element = document.getElementById('update');
 
-					element.addEventListener('click', function() {
-						alert("chart update...");
-						
-						// MODIFIER LE GRAPHE
-						// (changer les dates, l'échelle, etc.)
-					
-						//myChart.labels = ["1","2","3"];
-						//myChart.data.labels = ["1","2","3"];
-						//myChart.data.datasets[0].data = [1,2,3];
-						//myChart.data.datasets[1].data = [4,5,6];
-						//myChart.data.datasets[2].data = [7,8,9];
-						
-						//myChart.data.datasets[0].data[2] = 50;
-						
-						//myChart.update();
-						//getDonnees(); // fonction php... TODO
-						
-						/*myChart.destroy();
-						var ctx = document.getElementById("myChartLine").getContext("2d");
-						myChart = new Chart(ctx).Line(data, options);*/
-						
-						
-
-					});
-				</script>-->
+				
+				
 			
 			</div>
 		
@@ -195,4 +158,4 @@
 
 </html>
 </body>
-</html>
+
