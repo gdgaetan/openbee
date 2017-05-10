@@ -18,8 +18,8 @@
 		<!--<script type="text/javascript">
 			function writediv(texte, endroit)
 			{
-				console.log(endroit);
-				console.log(texte);
+				alert(endroit);
+				alert(texte);
 				document.getElementById(endroit).innerHTML = texte;
 			}
 			function afficher()
@@ -60,7 +60,7 @@
 				<h2>Merveilleuse liste</h2>
 				
 				<ul>
-					<li>Element 1000</li>
+					<li>Element 1</li>
 					<li>Element 2</li>
 					<li>Element 42</li>
 				</ul>
@@ -105,10 +105,10 @@
 				<!-- des boutons... -->
 				<form method="post">
 					<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
-					<input type="datetime-local" name="selectDateDebut" />
-					<input type="datetime-local" name="selectDateFin" />
+					<input type="datetime-local" id="selectDateDebut" />
+					<input type="datetime-local" id="selectDateFin" />
 					<span id="lblGranul">Granularité</span>
-					<select name="selectGranularite">
+					<select id="selectGranularite">
 						<option value="minute">Minute</option>
 						<option value="heure">Heure</option>
 						<option value="jour">Jour</option>
@@ -120,31 +120,41 @@
 					<button id="update">Mettre à jour</button>
 				
 				<script>
-				$(function() {
+					$(function() {
 						$('#update').click(function() {
-								console.log("click OK");
-								$("#chart1").load("graphiques.php", {
-selectDateDebut:$("selectDateDebut").val(),
-selectDateFin:$("selectDateFin").val(),
-selectGranularite:$("selectGranularite").val()
-});
-								}); 
-
-						});/*
-						      $(function() {
-						      $('#update').click(afficher()); 
-						      });*/
-</script>
-
-<form method="post" action="generate.php">
-<input type="submit" name="generator" value="Generate 100000" />
-</form>
-
-
-</div>
-
-</div>
-
-</body>
+						// TEST
+						console.log($("#selectDateDebut").val());
+						console.log($("#selectDateFin").val());
+						console.log($("#selectGranularite").val());
+						
+							$("#chart1").load("graphiques.php", {
+								dateDebut: $("#selectDateDebut").val(),
+								dateFin: $("#selectDateFin").val(),
+								granul: $("#selectGranularite").val()
+							});
+						}); 
+					});/*
+					$(function() {
+						$('#update').click(afficher()); 
+					});*/
+					
+					// page onload
+					$("#chart1").load("graphiques.php", {
+						dateDebut: $("#selectDateDebut").val(),
+						dateFin: $("#selectDateFin").val(),
+						granul: $("#selectGranularite").val()
+					});
+				</script>
+				
+				<form method="post" action="generate.php">
+					<input type="submit" name="generator" value="Generate 100000" />
+				</form>
+				
+			
+			</div>
+		
+		</div>
+		
+	</body>
 
 </html>

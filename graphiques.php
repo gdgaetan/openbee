@@ -2,9 +2,16 @@
 
 <?php
 
-echo '<script>console.log("PHP");</script>';
-
-include "onebee/connection.php";
+// connexion à la base de données
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=testonebee', 'root', '');
+}
+catch(Exception $e)
+{
+	// erreur
+	die('Erreur : '.$e->getMessage());
+}
 
 // dès le début, on récupère le contenu des formulaires
 // (+ valeurs par défaut, avec isset)
@@ -22,14 +29,31 @@ $dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
 
 $granularite = "minute";
 
+// TEST
+//echo "<script>alert(".$_POST['dateFin'].");</script>";
+foreach ($_POST as $key => $value) {
+        echo "<tr>";
+        echo "<td>";
+        echo $key;
+        echo "</td>";
+        echo "<td>";
+        echo $value;
+        echo "</td>";
+        echo "</tr>";
+    }
+
 // avec le formulaire rempli
-if(!empty($_POST["selectDateFin"]) && !empty($_POST["selectDateDebut"]))
+if(!empty($_POST["dateFin"]) && !empty($_POST["dateDebut"]))
 {
-	$dateFin = new DateTime($_POST["selectDateFin"]);
-	$dateDebut = new DateTime($_POST["selectDateDebut"]);
-	if (!empty($_POST["selectGranularite"]))
-	{
-		switch ($_POST["selectGranularite"]) {
+	$dateFin = new DateTime($_POST["dateFin"]);
+	$dateDebut = new DateTime($_POST["dateDebut"]);
+
+}
+	
+echo "<script>console.log('TEST');</script>";
+if (!empty($_POST["granul"])) // <- problème ici
+	{ echo "<script>console.log('granularité!!!!!'):</script>";
+		switch ($_POST["granul"]) {
 			case "heure":
 				$granularite = "heure";
 				break;
@@ -48,10 +72,7 @@ if(!empty($_POST["selectDateFin"]) && !empty($_POST["selectDateDebut"]))
 			default: // minute
 			   $granularite = "minute";
 		}
-	}
-
 }
-
 // on a besoin de chaînes de caractères
 $fin = $dateFin->format('Y-m-d H:i:s');
 $debut = $dateDebut->format('Y-m-d H:i:s');
@@ -67,7 +88,6 @@ il faudra apporter des modifications à graphiques.js
 */
 function getDonnees($dateDebut, $dateFin, $granularite){
 	global $bdd;
-echo '<script>console.log("getDonnees()");</script>';
 	//$reponse = $bdd->query('SELECT * FROM abeille'); // récupère toutes les données
 	//$reponse = $bdd->query("SELECT * from abeille WHERE dateEnregistrement BETWEEN '2017-03-21 11:00:00' AND '2017-03-21 15:00:00'"); // exemple avec les dates "en dur"
 	$reponse = $bdd->query("SELECT * from abeille WHERE dateEnregistrement BETWEEN '".$dateDebut."' AND '".$dateFin."'");
@@ -111,7 +131,7 @@ echo '<script>console.log("getDonnees()");</script>';
 		default: // minute
 			$parDefaut = true;
 			while ($donnees = $reponse->fetch())
-			{
+			{ 
 				$dates[] = $donnees['dateEnregistrement'];
 				$entrees[] = $donnees['nbEntrees'];
 				$sorties[] = $donnees['nbSorties'];
@@ -128,7 +148,7 @@ echo '<script>console.log("getDonnees()");</script>';
 		$trouverProchaineDate = false;
 		
 		while ($donnees = $reponse->fetch())
-		{				
+		{			
 			$currDate = new DateTime($donnees['dateEnregistrement']);
 			
 			// il faut trouver la première date courante effective
