@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>One Bee - Accueil</title>
+  <title>One Bee - Graphique</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -150,9 +150,6 @@
 				
 				<button onclick="saveImg()">Enregistrer le graphique</button>
 				
-				<form method="post" action="generate.php">
-					<input type="submit" name="generator" value="Generate 100000" />
-				</form>
 				
 				
 				<!--

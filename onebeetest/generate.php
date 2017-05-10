@@ -5,10 +5,12 @@ echo "Generating...";
 include 'connection.php';
 
         echo "working... <br/>";
-		$requete = $bdd->query ('SELECT * FROM compteur');
-		$res = $requete->fetch();
-		$totalIn = $res['inTotal'];
-		$totalOut = $res['outTotal'];
+		$bdd->query('DELETE FROM abeille');
+		$bdd->query('DELETE FROM abeille');
+		//$requete = $bdd->query ('SELECT * FROM compteur');
+		//$res = $requete->fetch();
+		$totalIn = 0; //$res['inTotal'];
+		$totalOut = 0; //$res['outTotal'];
         for ($i = 0; $i < 1000; $i++){
             $abeilleIn = rand(0,50);
             $abeilleOut= rand(0,50);
