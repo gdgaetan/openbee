@@ -60,7 +60,7 @@
 				<h2>Merveilleuse liste</h2>
 				
 				<ul>
-					<li>Element 1</li>
+					<li>Element 1000</li>
 					<li>Element 2</li>
 					<li>Element 42</li>
 				</ul>
@@ -116,40 +116,35 @@
 						<option value="mois">Mois</option>
 						<option value="annee">Année</option>
 					</select>
-					<button id="update">Mettre à jour</button>
 				</form>
+					<button id="update">Mettre à jour</button>
 				
 				<script>
-	/*				$(function() {
+				$(function() {
 						$('#update').click(function() {
-							console.log("click OK");
-							$("#chart1").load("graphiques.php", {
-								selectDateDebut:$("selectDateDebut").val(),
-								selectDateFin:$("selectDateFin").val(),
-								selectGranularite:$("selectGranularite").val()
-							});
-						}); 
+								console.log("click OK");
+								$("#chart1").load("graphiques.php", {
+selectDateDebut:$("selectDateDebut").val(),
+selectDateFin:$("selectDateFin").val(),
+selectGranularite:$("selectGranularite").val()
+});
+								}); 
 
-					});/*
-					$(function() {
-						$('#update').click(afficher()); 
-					});*/
-$("#chart1").load("graphiques.php", {
-								selectDateDebut:$("selectDateDebut").val(),
-								selectDateFin:$("selectDateFin").val(),
-								selectGranularite:$("selectGranularite").val()
-							});
-				</script>
-				
-				<form method="post" action="generate.php">
-					<input type="submit" name="generator" value="Generate 100000" />
-				</form>
-				
-			
-			</div>
-		
-		</div>
-		
-	</body>
+						});/*
+						      $(function() {
+						      $('#update').click(afficher()); 
+						      });*/
+</script>
+
+<form method="post" action="generate.php">
+<input type="submit" name="generator" value="Generate 100000" />
+</form>
+
+
+</div>
+
+</div>
+
+</body>
 
 </html>

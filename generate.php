@@ -8,7 +8,7 @@ include "onebee/connection.php";
             $in = rand(0,50);
             $out= rand(0,50);
             $total = $in + $out;
-            if ($bdd->query("INSERT INTO testonebee.abeille (idAbeille, dateEnregistrement, nbEntrees, nbSorties, compteur) VALUES (NULL, DATE_ADD(NOW(), INTERVAL $i MINUTE), $in, $out, $total);") === TRUE) {
+            if ($bdd->query("INSERT INTO onebee.abeille (idAbeille, dateEnregistrement, nbEntrees, nbSorties, compteur) VALUES (NULL, DATE_ADD(NOW(), INTERVAL $i MINUTE), $in, $out, $total);") === TRUE) {
                 echo "New record created successfully";
             }else{
 		    print_r($bdd->errorInfo());
@@ -17,6 +17,6 @@ include "onebee/connection.php";
 
 echo "done. <br/>";
 
-//header('location:index.php');
+header('location:index.php');
 ?>		
 
