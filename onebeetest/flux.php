@@ -51,7 +51,6 @@
   </div>
 </nav>
 
-<!--<meta http-equiv="refresh" content="1; URL=index.php" />-->
 <?php 
 session_start();
 if(!empty($_POST['debut']))
@@ -64,6 +63,7 @@ else
 }
 ?>
 <form action="flux.php" method="post">
+date de début (aaaa-mm-jjThh:mm)</br>
 <input type="datetime-local" name="debut">
 <button type="submit">changer</button>
 </form>
