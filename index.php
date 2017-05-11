@@ -1,160 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="description" content="Quelle belle description !" />
-		<meta name="author" content="Solène Demars" />
-		<!-- Shortcut Icon -->
-		<!--<link rel="icon" type="image/png" href="img/favicon.png" />-->
-		
-		<link href="style.css" rel="stylesheet" type="text/css" />
-		<script src="highcharts.js"></script>
-		<script src="graphiques.js"></script>
-		<script src="jquery-3.2.1.min.js"></script>
-		
-		<title>Test pour les graphiques</title>	
-		
-		<!--<script type="text/javascript">
-			function writediv(texte, endroit)
-			{
-				alert(endroit);
-				alert(texte);
-				document.getElementById(endroit).innerHTML = texte;
-			}
-			function afficher()
-			{
-				if(texte = file('graphiques.php'))
-				{
-					writediv(texte, 'chart1');
-				}
-			}
-			function file(fichier)
-			{
-				if(window.XMLHttpRequest) // FIREFOX
-				xhr_object = new XMLHttpRequest();
-				else if(window.ActiveXObject) // IE
-				xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
-				else
-				return(false);
-				xhr_object.open("GET", fichier, false);
-				xhr_object.send(null);
-				if(xhr_object.readyState == 4) return(xhr_object.responseText);
-				else return(false);
-			}
-			afficher();
-		</script>-->
-  
-	</head>
+<head>
+  <title>One Bee - Accueil</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <script src="jquery-3.2.1.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+</head>
+<body style="margin-top:80px" >
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <span class="navbar-brand">One Bee</span>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.php">ACCUEIL</a></li>
+		  <li><a href="graphe.php">GRAPHIQUE</a></li>
+		  <li><a href="flux.php">FLUX VIDEO</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+		  <li><a href="#">REDEMARER</a></li>
+		</ul>
+	  </div>
+	</nav>
+	<!-- galery d'image -->
+	<div class="img-responsive">
+	<div class="col-md-2"></div>
+	  <div  class="col-md-2">
+		<img src="mind.png" alt="mind" style="width:200px" >
+	  </div>
 	
-	<body>
-		
-		<h1>C'est un titre</h1>
-		
-		<div class="mainContent">
-		
-			<p>Et ça c'est du contenu.</p>
-			
-			<div class="liste">
-			
-				<h2>Merveilleuse liste</h2>
-				
-				<ul>
-					<li>Element 1</li>
-					<li>Element 2</li>
-					<li>Element 42</li>
-				</ul>
-				
-			</div>
-			
-			<div class="formulaire">
-			
-				<h2>Formulaire extraordinaire</h2>
-				
-				<form method="post" action="index.php">
-					<p><label>Champ <abbr alt="numéro">n°1</abbr></label> : <input type="text" name="chUn" placeholder="Lui, il sert à rien en fait"/> </p>
-					<p><label>Champ <abbr alt="numéro">n°2</abbr></label> : <input type="password" name="chDeux" placeholder="Important"/> </p>
-					<input type="submit" name="valider" value="Ne pas cliquer"/>
-				</form>
-				
-				<div class="resultForm">
-					<p>
-						<?php
+	  <div class="col-md-2">
+		<img src="onebee.png" alt="onebee" style="width:200px" >
+	  </div>
 	
-							if(isset($_POST['valider']))
-							{
-								if (!empty($_POST["chDeux"]))
-								{
-									echo $_POST["chDeux"];
-									echo ", quel beau mot de passe !";
-								}
-								else
-								{
-									echo "Donne-moi ton mot de passe !";
-								}
-							}
-						?>
-					</p>
-				
-				</div>
-			</div>
-				
-			<div class="chartTest">
-				<div id="chart1"><p>test</p></div>
-				
-				<!-- des boutons... -->
-				<form method="post">
-					<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
-					<input type="datetime-local" id="selectDateDebut" />
-					<input type="datetime-local" id="selectDateFin" />
-					<span id="lblGranul">Granularité</span>
-					<select id="selectGranularite">
-						<option value="minute">Minute</option>
-						<option value="heure">Heure</option>
-						<option value="jour">Jour</option>
-						<option value="semaine">Semaine</option>
-						<option value="mois">Mois</option>
-						<option value="annee">Année</option>
-					</select>
-				</form>
-					<button id="update">Mettre à jour</button>
-				
-				<script>
-					$(function() {
-						$('#update').click(function() {
-						// TEST
-						console.log($("#selectDateDebut").val());
-						console.log($("#selectDateFin").val());
-						console.log($("#selectGranularite").val());
-						
-							$("#chart1").load("graphiques.php", {
-								dateDebut: $("#selectDateDebut").val(),
-								dateFin: $("#selectDateFin").val(),
-								granul: $("#selectGranularite").val()
-							});
-						}); 
-					});/*
-					$(function() {
-						$('#update').click(afficher()); 
-					});*/
-					
-					// page onload
-					$("#chart1").load("graphiques.php", {
-						dateDebut: $("#selectDateDebut").val(),
-						dateFin: $("#selectDateFin").val(),
-						granul: $("#selectGranularite").val()
-					});
-				</script>
-				
-				<form method="post" action="generate.php">
-					<input type="submit" name="generator" value="Generate 100000" />
-				</form>
-				
-			
-			</div>
-		
-		</div>
-		
-	</body>
-
+	  <div class="col-md-2" style="margin-top:20px">
+		<img src="univsavoie.png" alt="univsavoie" style="width:350px">
+	  </div>
+	<div class="col-md-1">
+	</div>
+	</div>
+	<!--<img src="mind.png" class="img-rounded" alt="Cinque Terre">
+	<img src="onebee.png" class="img-rounded" alt="Cinque Terre" >
+	<img src="univsavoie.png" class="img-rounded" alt="Cinque Terre" > -->
+</body>
 </html>

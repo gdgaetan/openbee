@@ -3,15 +3,8 @@
 <?php
 
 // connexion à la base de données
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=testonebee', 'root', '');
-}
-catch(Exception $e)
-{
-	// erreur
-	die('Erreur : '.$e->getMessage());
-}
+include 'connection.php';
+
 
 // dès le début, on récupère le contenu des formulaires
 // (+ valeurs par défaut, avec isset)
@@ -30,7 +23,14 @@ $dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
 $granularite = "minute";
 
 // TEST
-//echo "<script>alert(".$_POST['dateFin'].");</script>";
+//echo "<script>alert(".$_POST["dateFin"].");</script>";
+/*echo "<script>console.log('données pour php :');</script>";
+foreach ($_POST as $key => $value) {
+        echo "<script>console.log(".$key.");</script>";
+        echo "<script>console.log(".$value.");</script>";
+}*/
+/*
+echo "données pour php :<br/>";
 foreach ($_POST as $key => $value) {
         echo "<tr>";
         echo "<td>";
@@ -40,19 +40,26 @@ foreach ($_POST as $key => $value) {
         echo $value;
         echo "</td>";
         echo "</tr>";
-    }
+		echo "<br/>";
+}*/
+
 
 // avec le formulaire rempli
 if(!empty($_POST["dateFin"]) && !empty($_POST["dateDebut"]))
 {
+// pb, il n'aime pas les dates (?)
+//echo "<script>console.log('dates OK');</script>";
+echo $_POST["dateFin"];
 	$dateFin = new DateTime($_POST["dateFin"]);
+echo $dateFin->format('Y-m-d H:i');
+	//echo "<br/>date fin ";
+	//echo $dateFin->format('Y-m-d H:i:s');
 	$dateDebut = new DateTime($_POST["dateDebut"]);
 
 }
-	
-echo "<script>console.log('TEST');</script>";
-if (!empty($_POST["granul"])) // <- problème ici
-	{ echo "<script>console.log('granularité!!!!!'):</script>";
+
+if (!empty($_POST["granul"]))
+	{ //echo "<script>console.log('granularité OK');</script>";
 		switch ($_POST["granul"]) {
 			case "heure":
 				$granularite = "heure";
@@ -74,10 +81,17 @@ if (!empty($_POST["granul"])) // <- problème ici
 		}
 }
 // on a besoin de chaînes de caractères
-$fin = $dateFin->format('Y-m-d H:i:s');
-$debut = $dateDebut->format('Y-m-d H:i:s');
+$fin = $dateFin->format('Y-m-d H:i');
+$debut = $dateDebut->format('Y-m-d H:i');
+
+echo "<br/>";
+echo $fin;
+echo "<br/>";
+echo $debut;
+echo "<br/>";
 
 getDonnees($debut, $fin, $granularite);
+
 
 
 /**
@@ -131,13 +145,14 @@ function getDonnees($dateDebut, $dateFin, $granularite){
 		default: // minute
 			$parDefaut = true;
 			while ($donnees = $reponse->fetch())
-			{ 
+			{
 				$dates[] = $donnees['dateEnregistrement'];
-				$entrees[] = $donnees['nbEntrees'];
-				$sorties[] = $donnees['nbSorties'];
+				$entrees[] = $donnees['nbEntreesAbeille'];
+				$sorties[] = $donnees['nbSortiesAbeille'];
+				//echo $donnees['dateEnregistrement'] ."<br/>"; //test
 			}
 	}
-	
+		
 	if ($parDefaut == false)
 	{
 		// on n'a pas forcément des données au début de l'intervalle demandé
@@ -148,7 +163,7 @@ function getDonnees($dateDebut, $dateFin, $granularite){
 		$trouverProchaineDate = false;
 		
 		while ($donnees = $reponse->fetch())
-		{			
+		{				
 			$currDate = new DateTime($donnees['dateEnregistrement']);
 			
 			// il faut trouver la première date courante effective
@@ -188,8 +203,8 @@ function getDonnees($dateDebut, $dateFin, $granularite){
 			}
 			
 			// on rajoute les données
-			$entrees[$index] += $donnees['nbEntrees'];
-			$sorties[$index] += $donnees['nbSorties'];
+			$entrees[$index] += $donnees['nbEntreesAbeille'];
+			$sorties[$index] += $donnees['nbSortiesAbeille'];
 			/*$entreesPollen[$index] += $donnees['nbEntreesPollen'];
 			$sortiesPollen[$index] += $donnees['nbSortiesPollen'];
 			$entreesFauxBourdon[$index] += $donnees['nbEntreesFauxBourdon'];

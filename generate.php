@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <?php
-echo "Generating...";
-include "onebee/connection.php";
+	echo "Generating...";
+
+	include 'connection.php';
 
         echo "working... <br/>";
+		$bdd->query('DELETE FROM abeille');
+		$bdd->query('DELETE FROM abeille');
+		//$requete = $bdd->query ('SELECT * FROM compteur');
+		//$res = $requete->fetch();
+		$totalIn = 0; //$res['inTotal'];
+		$totalOut = 0; //$res['outTotal'];
         for ($i = 0; $i < 1000; $i++){
-            $in = rand(0,50);
-            $out= rand(0,50);
-            $total = $in + $out;
-            if ($bdd->query("INSERT INTO onebee.abeille (idAbeille, dateEnregistrement, nbEntrees, nbSorties, compteur) VALUES (NULL, DATE_ADD(NOW(), INTERVAL $i MINUTE), $in, $out, $total);") === TRUE) {
+            $abeilleIn = rand(0,50);
+            $abeilleOut= rand(0,50);
+            $bourdonIn= rand(0,50);
+            $bourdonOut= rand(0,50);
+            $pollenIn= rand(0,50);
+            $totalIn = $abeilleIn + $bourdonIn + $pollenIn + $totalIn;
+            $totalOut = $abeilleOut + $bourdonOut + $totalOut;
+            if ($bdd->query("INSERT INTO onebee.abeille (idAbeille, dateEnregistrement, nbEntreesAbeille, nbSortiesAbeille, NBEFauxBourdon, NBSFauxBourdon, NBEAbeillePollen, compteurEntree, compteurSortie) VALUES (NULL, DATE_ADD(NOW(), INTERVAL $i MINUTE), $abeilleIn, $abeilleOut, $bourdonIn, $bourdonOut, $pollenIn, $totalIn, $totalOut);UPDATE compteur SET inTotal = ".$totalIn.", outTotal = ".$totalOut." WHERE idCompteur = 1;") === TRUE) {
                 echo "New record created successfully";
-            }else{
-		    print_r($bdd->errorInfo());
-	    }
-	}
+            }
+        }
 
-echo "done. <br/>";
+        echo "done. <br/>";
 
-header('location:index.php');
+        //header('location:index.php');
 ?>		
 
