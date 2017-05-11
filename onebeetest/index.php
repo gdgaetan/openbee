@@ -33,16 +33,16 @@
 	
 	<!-- galery d'image -->
 	
-	<div class="img-responsive" >
+	<div class="img-responsive" class="text-center"  >
 	<div class="col-md-2"></div>
 
-	  <div  class="col-md-2" style="margin-left:50px">
-		<img src="mind.png" alt="mind" style="width:210px" >
+	  <div  class="col-md-2" style="margin-left:50px"  >
+		<img src="mind.png" alt="mind"style="width:210px" >
 	  </div>
-	  <div class="col-md-2">
+	  <div class="col-md-2"  >
 		<img src="onebee.png" alt="onebee" style="width:210px" >
 	  </div>
-	  <div class="col-md-2" style="margin-top:20px" >
+	  <div class="col-md-2" style="margin-top:20px"  >
 		<img src="univsavoie.png" alt="univsavoie" style="width:360px">
 		
 	  </div>
