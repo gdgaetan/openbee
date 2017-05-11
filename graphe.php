@@ -51,17 +51,25 @@
 		<!-- des boutons... -->
 		<form method="post">
 			<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
-			<input type="datetime-local" id="selectDateDebut" />
-			<input type="datetime-local" id="selectDateFin" />
-			<span id="lblGranul">Granularité</span>
-			<select id="selectGranularite">
-				<option value="minute">Minute</option>
-				<option value="heure">Heure</option>
-				<option value="jour">Jour</option>
-				<option value="semaine">Semaine</option>
-				<option value="mois">Mois</option>
-				<option value="annee">Année</option>
-			</select>
+			<span class="formulaire">
+				<label>Date début</label>
+				<input type="datetime-local" id="selectDateDebut" />
+			</span>
+			<span class="formulaire">
+				<label>Date fin</label>
+				<input type="datetime-local" id="selectDateFin" />
+			</span>
+			<span class="formulaire">
+				<label>Granularité</label>
+				<select id="selectGranularite">
+					<option value="minute">Minute</option>
+					<option value="heure">Heure</option>
+					<option value="jour">Jour</option>
+					<option value="semaine">Semaine</option>
+					<option value="mois">Mois</option>
+					<option value="annee">Année</option>
+				</select>
+			</span>
 		</form>
 		<button id="update">Mettre à jour</button>
 
