@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# run application you want to start
+
+sudo /home/pi/Documents/onebee/onebee
