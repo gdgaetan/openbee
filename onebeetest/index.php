@@ -30,25 +30,31 @@
 		</ul>
 	  </div>
 	</nav>
+	
 	<!-- galery d'image -->
-	<div class="img-responsive">
+	<p >
+	<div class="img-responsive" >
 	<div class="col-md-2"></div>
-	  <div  class="col-md-2">
-		<img src="mind.png" alt="mind" style="width:200px" >
+
+	  <div  class="col-md-2" style="margin-left:50px">
+		<img src="mind.png" alt="mind" style="width:210px" >
 	  </div>
-	
 	  <div class="col-md-2">
-		<img src="onebee.png" alt="onebee" style="width:200px" >
+		<img src="onebee.png" alt="onebee" style="width:210px" >
 	  </div>
+	  <div class="col-md-2"  >
+		<img src="univsavoie.png" alt="univsavoie" style="width:360px">
+	  </div>
+	</div>
+	</p>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> 
+	<div class="container" >
+		<h1><p class="text-center"><strong>
+		Bienvenue dans l'application One Bee
+		</strong></p></h1>
+	</div>
 	
-	  <div class="col-md-2" style="margin-top:20px">
-		<img src="univsavoie.png" alt="univsavoie" style="width:350px">
-	  </div>
-	<div class="col-md-1">
-	</div>
-	</div>
-	<!--<img src="mind.png" class="img-rounded" alt="Cinque Terre">
-	<img src="onebee.png" class="img-rounded" alt="Cinque Terre" >
-	<img src="univsavoie.png" class="img-rounded" alt="Cinque Terre" > -->
+  
+	
 </body>
 </html>
