@@ -66,34 +66,16 @@
 		<button id="update">Mettre à jour</button>
 
 		<script>
+			// quand on clique sur le bouton "mettre à jour"
 			$(function() {
-				$('#update').click(function() {
-				// TEST
-				/*console.log($("#selectDateDebut").val());
-				console.log($("#selectDateFin").val());
-				console.log($("#selectGranularite").val());*/
-				
+				$('#update').click(function() {				
 					$("#chart1").load("graphiques.php", {
 						dateDebut: $("#selectDateDebut").val(),
 						dateFin: $("#selectDateFin").val(),
 						granul: $("#selectGranularite").val()
 					});
 				}); 
-			});/*
-			$(function() {
-				$('#update').click(function() {
-				// TEST
-				console.log($("#selectDateDebut").val());
-				console.log($("#selectDateFin").val());
-				console.log($("#selectGranularite").val());
-				
-					$("#chart1").load("graphiques.php", 'dateDebut='+$("#selectDateDebut").val()+'&dateFin='+$("#selectDateFin").val()+'&granul='+$("#selectGranularite").val());
-				}); 
-			});*//*
-			$(function() {
-				$('#update').click(afficher()); 
-			});*/
-			
+			});
 			// page onload
 			$("#chart1").load("graphiques.php");
 		</script>

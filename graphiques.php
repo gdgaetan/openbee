@@ -22,73 +22,38 @@ $dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
 
 $granularite = "minute";
 
-// TEST
-//echo "<script>alert(".$_POST["dateFin"].");</script>";
-/*echo "<script>console.log('données pour php :');</script>";
-foreach ($_POST as $key => $value) {
-        echo "<script>console.log(".$key.");</script>";
-        echo "<script>console.log(".$value.");</script>";
-}*/
-/*
-echo "données pour php :<br/>";
-foreach ($_POST as $key => $value) {
-        echo "<tr>";
-        echo "<td>";
-        echo $key;
-        echo "</td>";
-        echo "<td>";
-        echo $value;
-        echo "</td>";
-        echo "</tr>";
-		echo "<br/>";
-}*/
-
-
 // avec le formulaire rempli
 if(!empty($_POST["dateFin"]) && !empty($_POST["dateDebut"]))
 {
-// pb, il n'aime pas les dates (?)
-//echo "<script>console.log('dates OK');</script>";
-echo $_POST["dateFin"];
 	$dateFin = new DateTime($_POST["dateFin"]);
-echo $dateFin->format('Y-m-d H:i');
-	//echo "<br/>date fin ";
-	//echo $dateFin->format('Y-m-d H:i:s');
 	$dateDebut = new DateTime($_POST["dateDebut"]);
-
 }
-
 if (!empty($_POST["granul"]))
-	{ //echo "<script>console.log('granularité OK');</script>";
-		switch ($_POST["granul"]) {
-			case "heure":
-				$granularite = "heure";
-				break;
-			case "jour":
-				$granularite = "jour";
-				break;
-			case "semaine":
-				$granularite = "semaine";
-				break;
-			case "mois":
-				$granularite = "mois";
-				break;
-			case "annee":
-				$granularite = "annee";
-				break;
-			default: // minute
-			   $granularite = "minute";
-		}
+{
+	switch ($_POST["granul"]) {
+		case "heure":
+			$granularite = "heure";
+			break;
+		case "jour":
+			$granularite = "jour";
+			break;
+		case "semaine":
+			$granularite = "semaine";
+			break;
+		case "mois":
+			$granularite = "mois";
+			break;
+		case "annee":
+			$granularite = "annee";
+			break;
+		default: // minute
+		   $granularite = "minute";
+	}
 }
 // on a besoin de chaînes de caractères
 $fin = $dateFin->format('Y-m-d H:i');
 $debut = $dateDebut->format('Y-m-d H:i');
 
-echo "<br/>";
-echo $fin;
-echo "<br/>";
-echo $debut;
-echo "<br/>";
 
 getDonnees($debut, $fin, $granularite);
 
