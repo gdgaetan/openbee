@@ -32,7 +32,7 @@
 	</nav>
 	
 	<!-- galery d'image -->
-	<p >
+	
 	<div class="img-responsive" >
 	<div class="col-md-2"></div>
 
@@ -42,14 +42,13 @@
 	  <div class="col-md-2">
 		<img src="onebee.png" alt="onebee" style="width:210px" >
 	  </div>
-	  <div class="col-md-2"  >
+	  <div class="col-md-2" style="margin-top:20px" >
 		<img src="univsavoie.png" alt="univsavoie" style="width:360px">
+		
 	  </div>
 	</div>
-	</p>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> 
-	<div class="container" >
-		<h1><p class="text-center"><strong>
+	<div class="container"   >
+		<h1><p class="text-center" style="margin-top:25%" ><strong>
 		Bienvenue dans l'application One Bee
 		</strong></p></h1>
 	</div>
