@@ -1,0 +1,21 @@
+body {
+  padding-top: 100px;
+  
+}
+
+.formulaire{
+	display: block;
+}
+
+.formulaire label {
+	width: 100px;
+	text-align: right;
+}
+
+.formulaire input, .formulaire select {
+	margin-left: 20px;
+}
+
+#update {
+	margin-left: 120px;
+}
