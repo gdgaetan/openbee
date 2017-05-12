@@ -33,7 +33,7 @@
 	
 	<!-- galery d'image -->
 	
-	<div class="img-responsive" class="text-center"  >
+	<div class="img-responsive"   >
 	<div class="col-md-2"></div>
 
 	  <div  class="col-md-2" style="margin-left:50px"  >
