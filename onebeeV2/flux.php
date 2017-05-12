@@ -75,8 +75,8 @@
 	?>
 	<!--<img alt="http://127.0.0.1:8081/" src="http://127.0.0.1:8081/">-->
 	<form action="flux.php" method="post">
-	date de début (aaaa-mm-jjThh:mm)</br>
-	<input type="datetime-local" name="debut">
+	date de début</br>
+	<input type="datetime-local" name="debut"  placeholder="aaaa-mm-jjThh:mm">
 	<button type="submit">changer</button>
 	</form>
 	<div id="compteur">

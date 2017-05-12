@@ -2,7 +2,7 @@
 	// connexion à la base de données
 	try
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=onebee', 'onebee', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=onebee', 'root', '');
 	}
 	catch(Exception $e)
 	{

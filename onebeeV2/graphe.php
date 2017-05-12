@@ -53,11 +53,11 @@
 			<!-- format date s'affiche sur Chrome et Edge, pour Firefox on ne voit qu'un champ de texte, format américain "mm/jj/aaaa hh:mm" -->
 			<span class="formulaire">
 				<label>Date début</label>
-				<input type="datetime-local" id="selectDateDebut" />
+				<input type="datetime-local" id="selectDateDebut" placeholder="mm/jj/aaaa hh:mm" />
 			</span>
 			<span class="formulaire">
 				<label>Date fin</label>
-				<input type="datetime-local" id="selectDateFin" />
+				<input type="datetime-local" id="selectDateFin" placeholder="mm/jj/aaaa hh:mm" />
 			</span>
 			<span class="formulaire">
 				<label>Granularité</label>
