@@ -1,7 +1,62 @@
+<div id="myChart" style="width:100%; height:400px;"></div>
+
 <?php
 
 // connexion à la base de données
 include 'connection.php';
+
+
+// dès le début, on récupère le contenu des formulaires
+// (+ valeurs par défaut, avec isset)
+
+// quel intervalle à afficher ?
+// récupérer la date actuelle (date de fin à afficher)
+$timezone = new DateTimeZone("Europe/Paris");
+$dateFin = new DateTime();
+$dateFin->setTimezone( $timezone );
+
+// calculer la (date de début à afficher, par défaut : la dernière heure)
+$dateDebut = new DateTime();
+$dateDebut->setTimezone( $timezone );
+$dateDebut->sub(new DateInterval('PT1H')); // moins 1 heure
+
+$granularite = "minute";
+
+// avec le formulaire rempli
+if(!empty($_POST["dateFin"]) && !empty($_POST["dateDebut"]))
+{
+	$dateFin = new DateTime($_POST["dateFin"]);
+	$dateDebut = new DateTime($_POST["dateDebut"]);
+}
+if (!empty($_POST["granul"]))
+{
+	switch ($_POST["granul"]) {
+		case "heure":
+			$granularite = "heure";
+			break;
+		case "jour":
+			$granularite = "jour";
+			break;
+		case "semaine":
+			$granularite = "semaine";
+			break;
+		case "mois":
+			$granularite = "mois";
+			break;
+		case "annee":
+			$granularite = "annee";
+			break;
+		default: // minute
+		   $granularite = "minute";
+	}
+}
+// on a besoin de chaînes de caractères
+$fin = $dateFin->format('Y-m-d H:i');
+$debut = $dateDebut->format('Y-m-d H:i');
+
+
+getDonnees($debut, $fin, $granularite);
+
 
 
 /**

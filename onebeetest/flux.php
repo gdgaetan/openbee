@@ -38,7 +38,7 @@
 </head>
 <body style="margin-top:80px">
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 		<div class="navbar-header">
 		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -46,11 +46,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <span class="navbar-brand">One Bee</span>
+      <a class="navbar-brand" href="index.php">One Bee</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="index.php">ACCUEIL</a></li>
+          <li><a href="index.php">ACCUEIL</a></li>
 		  <li><a href="graphe.php">GRAPHIQUE</a></li>
 		  <li class="active"><a href="flux.php">FLUX VIDEO</a></li>
       </ul>
