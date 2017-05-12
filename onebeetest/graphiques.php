@@ -3,11 +3,7 @@
 <?php
 
 // connexion à la base de données
-include 'connection.php';
-
-
-// dès le début, on récupère le contenu des formulaires
-// (+ valeurs par défaut, avec isset)
+include 'connexion.php';
 
 // quel intervalle à afficher ?
 // récupérer la date actuelle (date de fin à afficher)

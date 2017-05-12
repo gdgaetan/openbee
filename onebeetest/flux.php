@@ -55,7 +55,7 @@
 		  <li class="active"><a href="flux.php">FLUX VIDEO</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-		  <li><a href="#">REDEMARER</a></li>
+		  <li><a href="#">REDEMARRER</a></li>
 		</ul>
 	  </div>
 	</nav>
@@ -72,13 +72,11 @@
 	}
 	// Permet d'afficher le flux vidéo de motion sur une page web.
 	// N'oubliez pas de configurer l'adresse IP et le port correctement.
-	$IP = $_SERVER['SERVER_ADDR'];
-	$PORT = 8081;
-	echo '<img alt="http://'.$IP.':'.$PORT.'/" src="http://'.$IP.':'.$PORT.'/">'
 	?>
+	<!--<img alt="http://127.0.0.1:8081/" src="http://127.0.0.1:8081/">-->
 	<form action="flux.php" method="post">
-	date de début (aaaa-mm-jjThh:mm)</br>
-	<input type="datetime-local" name="debut">
+	date de début</br>
+	<input type="datetime-local" name="debut"  placeholder="aaaa-mm-jjThh:mm">
 	<button type="submit">changer</button>
 	</form>
 	<div id="compteur">

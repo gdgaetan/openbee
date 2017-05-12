@@ -11,7 +11,7 @@
 		//$res = $requete->fetch();
 		$totalIn = 0; //$res['inTotal'];
 		$totalOut = 0; //$res['outTotal'];
-        for ($i = 0; $i < 1000; $i++){
+        for ($i = 0; $i < 2000; $i++){
             $abeilleIn = rand(0,50);
             $abeilleOut= rand(0,50);
             $bourdonIn= rand(0,50);
