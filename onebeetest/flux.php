@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="flux.css" rel="stylesheet">
   <script src="jquery-3.2.1.min.js"></script>
   <script src="bootstrap.min.js"></script>
   <script type="text/javascript">
