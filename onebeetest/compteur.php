@@ -11,7 +11,7 @@ include 'connection.php';
 		$requete = $bdd->query ('SELECT * FROM abeille where dateEnregistrement <= "'.$_SESSION['debut'].'" order by dateEnregistrement desc');
 		$res2 = $requete->fetch();
 		echo '
-		<div class="container">
+		<div class="containerCompteur">
 		  <p>Depuis le '.$_SESSION['debut'].':</p>            
 		  <table class="table">
 			<thead>
@@ -36,7 +36,7 @@ include 'connection.php';
 		$requete = $bdd->query ('SELECT * FROM compteur');
 		$res = $requete->fetch();
 		echo'
-		<div class="container">          
+		<div class="containerCompteur">          
 		  <table class="table">
 			<thead>
 			  <tr>
