@@ -74,18 +74,25 @@
 		<button id="update">Mettre à jour</button>
 
 		<script>
+			function loadGraphique(){				
+				$("#chart1").load("graphiques.php", {
+					dateDebut: $("#selectDateDebut").val(),
+					dateFin: $("#selectDateFin").val(),
+					granul: $("#selectGranularite").val()
+				});
+			}
 			// quand on clique sur le bouton "mettre à jour"
 			$(function() {
 				$('#update').click(function() {				
-					$("#chart1").load("graphiques.php", {
-						dateDebut: $("#selectDateDebut").val(),
-						dateFin: $("#selectDateFin").val(),
-						granul: $("#selectGranularite").val()
-					});
+					loadGraphique();
 				}); 
 			});
 			// page onload
-			$("#chart1").load("graphiques.php");
+			loadGraphique();
+			// reload toutes les 60 secondes
+			setInterval(function () {
+				loadGraphique();
+			},60000);
 		</script>
 	
 	</div>
