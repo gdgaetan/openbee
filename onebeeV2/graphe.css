@@ -1,6 +1,6 @@
-/* permet de commencer à afficher les pages en dessous du menus*/
-body{
-	margin-top:80px;
+body {
+  padding-top: 100px;
+  
 }
 
 .formulaire{
@@ -16,6 +16,6 @@ body{
 	margin-left: 20px;
 }
 
-#update {
+#update2, #update3 {
 	margin-left: 120px;
 }
