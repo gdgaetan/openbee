@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="index.css" rel="stylesheet">
   <script src="jquery-3.2.1.min.js"></script>
   <script src="bootstrap.min.js"></script>
 </head>
@@ -31,24 +32,25 @@
 	  </div>
 	</nav>
 	
-	<!-- galery d'image -->
-	
-	<div class="img-responsive"   >
+	<!-- galerie d'image -->
+	<div class="contient">
+	<div class="img-responsive">
 	<div class="col-md-2"></div>
 
-	  <div  class="col-md-2" style="margin-left:50px"  >
-		<img src="mind.png" alt="mind"style="width:210px" >
+	  <div  class="col-md-2" id="collection"   >
+		<img src="mind.png" alt="mind" id="mind" >
 	  </div>
 	  <div class="col-md-2"  >
-		<img src="onebee.png" alt="onebee" style="width:210px" >
+		<img src="onebee.png" alt="onebee" id="onebee" >
 	  </div>
-	  <div class="col-md-2" style="margin-top:20px"  >
-		<img src="univsavoie.png" alt="univsavoie" style="width:360px">
+	  <div class="col-md-2" id="univsav" >
+		<img src="univsavoie.png" alt="univsavoie" id="univ">
 		
 	  </div>
 	</div>
+	</div>
 	<div class="container"   >
-		<h1><p class="text-center" style="margin-top:25%" ><strong>
+		<h1><p class="text-center" id="texte" ><strong>
 		Bienvenue dans l'application One Bee
 		</strong></p></h1>
 	</div>
