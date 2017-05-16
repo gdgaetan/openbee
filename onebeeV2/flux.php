@@ -48,9 +48,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 	  <!-- les 3 boutons du menu. celui qui est "active" est en surbrillance -->
-			<li class="active"><a href="index.php">ACCUEIL</a></li> 
+			<li><a href="index.php">ACCUEIL</a></li> 
 			<li><a href="graphe.php">GRAPHIQUE</a></li>
-			<li><a href="flux.php">FLUX VIDEO</a></li>
+			<li class="active"><a href="flux.php">FLUX VIDEO</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		  <li><a href="#">REDEMARRER</a></li>
