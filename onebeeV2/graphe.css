@@ -1,6 +1,6 @@
-body {
-  padding-top: 100px;
-  
+/* permet de commencer à afficher les pages en dessous du menus*/
+body{
+	margin-top:80px;
 }
 
 .formulaire{

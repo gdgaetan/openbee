@@ -1,3 +1,7 @@
+/* permet de commencer à afficher les pages en dessous du menus*/
+body{
+	margin-top:80px;
+}
 .contient{
 	margin: auto;
 	text-align : center;

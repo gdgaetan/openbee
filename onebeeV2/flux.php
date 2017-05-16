@@ -36,30 +36,28 @@
 		setInterval('afficher()', 500); // nombre de milisecondes entre deux rafraichissements : ici 10 secondes
   </script>
 </head>
-<body style="margin-top:80px">
-
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+<body >
+<!-- barre des menus en haut de la page (avec bootstraps) inverse pour fixer les menus à gauche, fixed-top pour avoir la barre affiché quand on scroll vers le bas -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 		<div class="navbar-header">
-		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
+		<!--titre de la barre des menus qui permet aussi de revenir à l'acceuil -->
+		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
       <a class="navbar-brand" href="index.php">One Bee</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-          <li><a href="index.php">ACCUEIL</a></li>
-		  <li><a href="graphe.php">GRAPHIQUE</a></li>
-		  <li class="active"><a href="flux.php">FLUX VIDEO</a></li>
+	  <!-- les 3 boutons du menu. celui qui est "active" est en surbrillance -->
+			<li class="active"><a href="index.php">ACCUEIL</a></li> 
+			<li><a href="graphe.php">GRAPHIQUE</a></li>
+			<li><a href="flux.php">FLUX VIDEO</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		  <li><a href="#">REDEMARRER</a></li>
 		</ul>
 	  </div>
 	</nav>
-
+<!--Fin de la barre des menus -->
 	<?php 
 	session_start();
 	if(!empty($_POST['debut']))
