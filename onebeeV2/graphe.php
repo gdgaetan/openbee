@@ -26,7 +26,11 @@
 	  <div class="container-fluid">
 		<div class="navbar-header">
 		<!--titre de la barre des menus qui permet aussi de revenir à l'acceuil -->
-		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
+		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		 <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+		</button>
       <a class="navbar-brand" href="index.php">One Bee</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
