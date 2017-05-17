@@ -6,7 +6,7 @@ $requete = $bdd->query ('SELECT * FROM compteur');/*on selectionne tous ce que l
 $res = $requete->fetch();/*et on met le résultat dans la varriable res*/
 if ( isset($_SESSION['debut']))/*si l'utilisateur a renseigné la date à laquelle sont comteur doit démarer*/
 {
-	$debut= new DateTime($_SESSION["debut"]);
+	$debut= new DateTime($_SESSION["debut"]);//on change le format de date en Y-m-d H:i
 	$debut = $debut->format('Y-m-d H:i');
 	$requete = $bdd->query ('SELECT * FROM abeille where dateEnregistrement <= "'.$debut.'" order by dateEnregistrement desc');/*on choisit toutes les dates plus pettites ou égale à la date
 	renseigné et on met la date la plus résente en première*/
