@@ -1,0 +1,9 @@
+.containerCompteur{
+	width:212px;
+	padding-right:15px;
+	padding-left:15px
+}
+/* permet de commencer à afficher les pages en dessous du menus*/
+body{
+	margin-top:80px;
+}
