@@ -9,15 +9,16 @@
   <script src="jquery-3.2.1.min.js"></script>
   <script src="bootstrap.min.js"></script>
   <script type="text/javascript">
+		// scrip trouvé sur internet qui permet d'actualiser le contenu d'une div, à interval régulier, sans rafraichir la page complète
 		function writediv(texte, endroit)
 		{
 		document.getElementById(endroit).innerHTML = texte;
 		}
 		function afficher()
 		{
-		if(texte = file('compteur.php'))
+		if(texte = file('compteur.php'))//permet de choisir le fichier que l'on va afficher dans la div : ici compteur.php
 		{
-		 writediv('<p align="left">'+texte+'</p>', 'compteur');
+		 writediv('<p align="left">'+texte+'</p>', 'compteur');//permet de choisir dans quelle div on va affichier notre fichier : ici la div qui a pour classe "compteur"
 		}
 		}
 		function file(fichier)
@@ -33,7 +34,7 @@
 		if(xhr_object.readyState == 4) return(xhr_object.responseText);
 		else return(false);
 		}
-		setInterval('afficher()', 500); // nombre de milisecondes entre deux rafraichissements : ici 10 secondes
+		setInterval('afficher()', 500); // nombre de milisecondes entre deux rafraichissements : ici 0.5 secondes
   </script>
 </head>
 <body >
@@ -81,7 +82,7 @@
 	<input type="datetime-local" name="debut"  placeholder="aaaa-mm-jjThh:mm">
 	<button type="submit">changer</button>
 	</form>
-	<div id="compteur">
+	<div id="compteur"> <!-- div dans laquelle on affiche compteur.php grâce au scrip -->
 	</div>
 
 </body>
