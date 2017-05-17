@@ -81,7 +81,7 @@
 	?>
 	<form action="flux.php" method="post">
 	date de début</br>
-	<input type="datetime-local" name="debut"  placeholder="aaaa-mm-jjThh:mm">
+	<input type="datetime-local" name="debut"  placeholder="mm/jj/aaaa hh:mm">
 	<button type="submit">changer</button>
 	</form>
 	<div id="compteur"> <!-- div dans laquelle on affiche compteur.php grâce au scrip -->

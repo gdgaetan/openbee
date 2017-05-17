@@ -6,12 +6,14 @@ $requete = $bdd->query ('SELECT * FROM compteur');/*on selectionne tous ce que l
 $res = $requete->fetch();/*et on met le résultat dans la varriable res*/
 if ( isset($_SESSION['debut']))/*si l'utilisateur a renseigné la date à laquelle sont comteur doit démarer*/
 {
-	$requete = $bdd->query ('SELECT * FROM abeille where dateEnregistrement <= "'.$_SESSION['debut'].'" order by dateEnregistrement desc');/*on choisit toutes les dates plus pettites ou égale à la date
+	$debut= new DateTime($_SESSION["debut"]);
+	$debut = $debut->format('Y-m-d H:i');
+	$requete = $bdd->query ('SELECT * FROM abeille where dateEnregistrement <= "'.$debut.'" order by dateEnregistrement desc');/*on choisit toutes les dates plus pettites ou égale à la date
 	renseigné et on met la date la plus résente en première*/
 	$res2 = $requete->fetch();/*on prend la première ligne ,soit la ligne avec la date la plus récente, et on l met dans la varrible res2*/
 	echo '
 	<div class="containerCompteur"> <!-- classe containerCompteur qui redimensionne, dans flux.css, le tableau créé par la mise en page de bootstrap  -->
-	  <p>Depuis le '.$_SESSION['debut'].':</p>   <!-- on affiche dapuis quelle date le comteur compte -->
+	  <p>Depuis le '.$debut.'</p>   <!-- on affiche dapuis quelle date le comteur compte -->
 	  <!-- mise en page permettent d avoir un jolie tableau grâce à bootstrap -->
 	  <table class="table">
 		<thead>
