@@ -26,27 +26,15 @@ if(!empty($_POST["dateFin"]) && !empty($_POST["dateDebut"]))
 	$dateFin = new DateTime($_POST["dateFin"]);
 	$dateDebut = new DateTime($_POST["dateDebut"]);
 }
+if(empty($_POST["dateFin"]) && !empty($_POST["dateDebut"]))
+{
+	// date de fin = date par défaut, càd l'heure actuelle
+	$dateDebut = new DateTime($_POST["dateDebut"]);
+}
 if (!empty($_POST["granul"]))
 {
-	switch ($_POST["granul"]) {
-		case "heure":
-			$granularite = "heure";
-			break;
-		case "jour":
-			$granularite = "jour";
-			break;
-		case "semaine":
-			$granularite = "semaine";
-			break;
-		case "mois":
-			$granularite = "mois";
-			break;
-		case "annee":
-			$granularite = "annee";
-			break;
-		default: // minute
-		   $granularite = "minute";
-	}
+	$granularite = $_POST["granul"];
+	
 }
 // on a besoin de chaînes de caractères
 $fin = $dateFin->format('Y-m-d H:i');
