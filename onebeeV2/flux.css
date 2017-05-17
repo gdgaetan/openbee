@@ -1,9 +1,8 @@
 .containerCompteur{
 	width:212px;/*empèche que le compteur face toute la largeur de la page*/
-	padding-right:15px;/*met un léger espace à droite du compteur*/
-	padding-left:15px;/*met un léger espace à gauche du compteur*/
+	margin : 0 auto;/*permet de centrer le compteur*/
 }
-/* permet de commencer à afficher les pages en dessous du menus*/
 body{
-	margin-top:80px;
+	margin-top:80px;/* permet de commencer à afficher les pages en dessous du menus*/
+	text-align : center/*permet de centrer le flux vidéo et le formulaire/*
 }
