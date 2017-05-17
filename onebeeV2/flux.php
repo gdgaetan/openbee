@@ -75,8 +75,10 @@
 	}
 	// Permet d'afficher le flux vidéo de motion sur une page web.
 	// N'oubliez pas de configurer l'adresse IP et le port correctement.
+	$IP = $_SERVER['SERVER_ADDR'];
+	$PORT = 8081;
+	echo '<img alt="http://'.$IP.':'.$PORT.'/" src="http://'.$IP.':'.$PORT.'/">';
 	?>
-	<!--<img alt="http://127.0.0.1:8081/" src="http://127.0.0.1:8081/">-->
 	<form action="flux.php" method="post">
 	date de début</br>
 	<input type="datetime-local" name="debut"  placeholder="aaaa-mm-jjThh:mm">
