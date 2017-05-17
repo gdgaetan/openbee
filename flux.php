@@ -9,15 +9,16 @@
   <script src="jquery-3.2.1.min.js"></script>
   <script src="bootstrap.min.js"></script>
   <script type="text/javascript">
+  // scrip trouvé sur internet qui permet d'actualiser le contenu d'une div, à interval régulier, sans rafraichir la page complète
 		function writediv(texte, endroit)
 		{
 		document.getElementById(endroit).innerHTML = texte;
 		}
 		function afficher()
 		{
-		if(texte = file('compteur.php'))
+		if(texte = file('compteur.php'))//permet de choisir le fichier que l'on va afficher dans la div : ici compteur.php
 		{
-		 writediv('<p align="left">'+texte+'</p>', 'compteur');
+		 writediv('<p align="left">'+texte+'</p>', 'compteur');//permet de choisir dans quelle div on va affichier notre fichier : ici la div qui a pour classe "compteur"
 		}
 		}
 		function file(fichier)
@@ -48,9 +49,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 	  <!-- les 3 boutons du menu. celui qui est "active" est en surbrillance -->
-			<li class="active"><a href="index.php">ACCUEIL</a></li> 
+			<li><a href="index.php">ACCUEIL</a></li> 
 			<li><a href="graphe.php">GRAPHIQUE</a></li>
-			<li><a href="flux.php">FLUX VIDEO</a></li>
+			<li class="active"><a href="flux.php">FLUX VIDEO</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		  <li><a href="#">REDEMARRER</a></li>
@@ -70,14 +71,16 @@
 	}
 	// Permet d'afficher le flux vidéo de motion sur une page web.
 	// N'oubliez pas de configurer l'adresse IP et le port correctement.
+	$IP = $_SERVER['SERVER_ADDR'];
+	$PORT = 8081;
+	echo '<img alt="http://'.$IP.':'.$PORT.'/" src="http://'.$IP.':'.$PORT.'/">';
 	?>
-	<!--<img alt="http://127.0.0.1:8081/" src="http://127.0.0.1:8081/">-->
 	<form action="flux.php" method="post">
 	date de début</br>
 	<input type="datetime-local" name="debut"  placeholder="aaaa-mm-jjThh:mm">
 	<button type="submit">changer</button>
 	</form>
-	<div id="compteur">
+	<div id="compteur"> <!-- div dans laquelle on affiche compteur.php grâce au scrip -->
 	</div>
 
 </body>

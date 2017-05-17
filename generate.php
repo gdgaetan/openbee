@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	//script permettant de générer des données dans la bdd pour faire des test
 	echo "Generating...";
 	
 		$db =  new SQLite3('mysqlitedb.db');
