@@ -57,12 +57,20 @@
 			<li><a href="graphe.php">GRAPHIQUE</a></li>
 			<li class="active"><a href="flux.php">FLUX VIDEO</a></li>
       </ul>
+	  <!-- bouton déroullant parametrage-->
       <ul class="nav navbar-nav navbar-right">
-		  <li><a href="#">REDEMARRER</a></li>
-		</ul>
+		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">PARAMETRAGE <span class="caret"></span></a>
+        <ul class="dropdown-menu"><!-- menu déroulant-->
+          <li><a href="#">REDEMARER</a></li>
+          <li><a href="#">COMPTEUR A ZERO</a></li>
+		  <!--ligne à copier pour ajouter des boutons pour les futures fonctionnalités
+          <li><a href="#">FONCTIONNALITES FUTURES...</a></li>-->
+        </ul>
+		</li>
+	  </ul>
 	  </div>
 	</nav>
-<!--Fin de la barre des menus -->
+	<!--Fin de la barre des menus -->
 	<?php 
 	session_start();
 	if(!empty($_POST['debut']))
