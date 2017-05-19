@@ -1,0 +1,20 @@
+body {
+  margin-top: 80px;
+}
+
+.formulaire{
+	display: block;
+}
+
+.formulaire label {
+	width: 100px;
+	text-align: right;
+}
+
+.formulaire input, .formulaire select {
+	margin-left: 20px;
+}
+
+#update2, #update3 {
+	margin-left: 120px;
+}

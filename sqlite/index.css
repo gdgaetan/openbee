@@ -1,0 +1,46 @@
+/* permet de commencer à afficher les pages en dessous du menus*/
+body{
+	margin-top:80px;
+}
+.contient{
+	margin: auto;
+	text-align : center;
+}
+#mind{
+	width:80%;
+}
+#onebee{
+	width:80%;
+}
+#univ{
+	width:100%;
+}
+#univsav{
+	margin-top:20px;
+}
+#collection{
+	margin-left:7%;
+}
+#texte{
+	margin-top:25%;
+}
+@media only screen and (max-width: 992px) {
+#mind{
+	width:25%;
+	min-width:100px;
+}
+#onebee{
+	width:25%;
+	min-width:100px;
+}
+#univ{
+	width:35%;
+	min-width:150px;
+}
+#collection{
+	margin-left:0%;
+}
+#texte{
+	margin-top:15%;
+}
+}
