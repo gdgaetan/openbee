@@ -61,7 +61,7 @@
       <ul class="nav navbar-nav navbar-right">
 		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">PARAMETRAGE <span class="caret"></span></a>
         <ul class="dropdown-menu"><!-- menu déroulant-->
-          <li><a href="#">REDEMARER</a></li>
+          <li><a href="#">REDEMARRER</a></li>
           <li><a href="#">COMPTEUR A ZERO</a></li>
 		  <!--ligne à copier pour ajouter des boutons pour les futures fonctionnalités
           <li><a href="#">FONCTIONNALITES FUTURES...</a></li>-->
