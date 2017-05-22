@@ -12,7 +12,7 @@
 		// scrip trouvé sur internet qui permet d'actualiser le contenu d'une div, à interval régulier, sans rafraichir la page complète
 		function writediv(texte, endroit)
 		{
-		document.getElementById(endroit).innerHTML = texte;
+			$("#endroit").html(texte);
 		}
 		function afficher()
 		{
@@ -23,18 +23,22 @@
 		}
 		function file(fichier)
 		{
-		if(window.XMLHttpRequest) // FIREFOX
-		xhr_object = new XMLHttpRequest();
-		else if(window.ActiveXObject) // IE
-		xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
-		else
-		return(false);
-		xhr_object.open("GET", fichier, false);
-		xhr_object.send(null);
-		if(xhr_object.readyState == 4) return(xhr_object.responseText);
-		else return(false);
+		$.get("compteur.php", function(data, status){
+				$("#compteur").html(data);
+			});
 		}
 		setInterval('afficher()', 500); // nombre de milisecondes entre deux rafraichissements : ici 0.5 secondes
+		
+				function loadSession(){
+			$("#session").load("session.php");
+		}
+		
+		$(function() {
+				$('#update').click(function() {				
+					loadSession();
+				}); 
+			});
+			
   </script>
 </head>
 <body >
@@ -88,12 +92,13 @@
 	echo '<img alt="http://'.$IP.':'.$PORT.'/" src="http://'.$IP.':'.$PORT.'/">';
 	?>
 	<form action="flux.php" method="post">
-	date de début</br>
+	date de début de la ligne 3</br>
 	<input type="datetime-local" name="debut"  placeholder="mm/jj/aaaa hh:mm">
 	<button type="submit">changer</button>
 	</form>
 	<div id="compteur"> <!-- div dans laquelle on affiche compteur.php grâce au scrip -->
 	</div>
-
+	<button id="update">Mettre à jour la ligne 2</button>
+	<div id="session"></div>
 </body>
 </html>

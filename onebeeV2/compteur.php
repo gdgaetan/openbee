@@ -4,6 +4,8 @@ dans laquelle on a la date(aaaa-mm-jjThh:mm) à laquelle le compteur doit démar
 include 'connexion.php';/*on ajoute le code qui nous permet de nous loguer à la bdd*/
 $requete = $bdd->query ('SELECT * FROM compteur');/*on selectionne tous ce que la table compteur contient, soit une ligne*/
 $res = $requete->fetch();/*et on met le résultat dans la varriable res*/
+$requete = $bdd->query ('SELECT * FROM abeille where dateEnregistrement <= "'.$_SESSION['dateCourante'].'" order by dateEnregistrement desc');
+$res3 = $requete->fetch();
 if ( isset($_SESSION['debut']))/*si l'utilisateur a renseigné la date à laquelle sont comteur doit démarer*/
 {
 	$debut= new DateTime($_SESSION["debut"]);//on change le format de date en Y-m-d H:i
@@ -13,7 +15,6 @@ if ( isset($_SESSION['debut']))/*si l'utilisateur a renseigné la date à laquel
 	$res2 = $requete->fetch();/*on prend la première ligne ,soit la ligne avec la date la plus récente, et on l met dans la varrible res2*/
 	echo '
 	<div class="containerCompteur"> <!-- classe containerCompteur qui redimensionne, dans flux.css, le tableau créé par la mise en page de bootstrap  -->
-	  <p>Depuis le '.$debut.'</p>   <!-- on affiche dapuis quelle date le comteur compte -->
 	  <!-- mise en page permettent d avoir un jolie tableau grâce à bootstrap -->
 	  <table class="table">
 		<thead>
@@ -24,11 +25,26 @@ if ( isset($_SESSION['debut']))/*si l'utilisateur a renseigné la date à laquel
 		  </tr>
 		</thead>
 		<tbody>
+		  <tbody>
 		  <tr>
+			<td></td>
+			<td>' . $res['inTotal'] . '</td> <!-- on affiche le nombre total d abeille entrente -->
+			<td>' . $res['outTotal'] . '</td> <!-- on affiche le nombre total d abeille sortante -->
+			<td>'. ($res['inTotal'] - $res['outTotal']) . '</td> <!-- on affiche la différence entre les 2 affichage précédent -->
+		  </tr>
+		  <tr>
+			<td>'.$_SESSION['dateCourante'].'</td><!-- on affiche dapuis quelle date le comteur compte -->
+			<td>' . ($res['inTotal']-$res3['compteurEntree']) . '</td> <!-- on affiche la différence entre le nombre total d abeille entrentre et le nombre d abeille entrente avant la date sélectionné -->
+			<td>' . ($res['outTotal']-$res3['compteurSortie']) . '</td></td> <!-- on affiche la différence entre le nombre total d abeille sortante et le nombre d abeille sortante avant la date sélectionné -->
+			<td>'. (($res['inTotal']-$res3['compteurEntree']) - ($res['outTotal']-$res3['compteurSortie'])) . '</td></td> <!-- on affiche la différence entre les 2 affichage précédent -->
+		  </tr>
+		  <tr>
+			<td>'.$debut.'</td><!-- on affiche dapuis quelle date le comteur compte -->
 			<td>' . ($res['inTotal']-$res2['compteurEntree']) . '</td> <!-- on affiche la différence entre le nombre total d abeille entrentre et le nombre d abeille entrente avant la date sélectionné -->
 			<td>' . ($res['outTotal']-$res2['compteurSortie']) . '</td></td> <!-- on affiche la différence entre le nombre total d abeille sortante et le nombre d abeille sortante avant la date sélectionné -->
 			<td>'. (($res['inTotal']-$res2['compteurEntree']) - ($res['outTotal']-$res2['compteurSortie'])) . '</td></td> <!-- on affiche la différence entre les 2 affichage précédent -->
 		  </tr>
+		</tbody>
 		</tbody>
 	  </table>
 	</div>';
@@ -48,9 +64,16 @@ else/*si l'utilisateur n'a pas renseigné de date*/
 		</thead>
 		<tbody>
 		  <tr>
+			<td></td>
 			<td>' . $res['inTotal'] . '</td> <!-- on affiche le nombre total d abeille entrente -->
 			<td>' . $res['outTotal'] . '</td> <!-- on affiche le nombre total d abeille sortante -->
 			<td>'. ($res['inTotal'] - $res['outTotal']) . '</td> <!-- on affiche la différence entre les 2 affichage précédent -->
+		  </tr>
+		  <tr>
+			<td>'.$_SESSION['dateCourante'].'</td><!-- on affiche dapuis quelle date le comteur compte -->
+			<td>' . ($res['inTotal']-$res3['compteurEntree']) . '</td> <!-- on affiche la différence entre le nombre total d abeille entrentre et le nombre d abeille entrente avant la date sélectionné -->
+			<td>' . ($res['outTotal']-$res3['compteurSortie']) . '</td></td> <!-- on affiche la différence entre le nombre total d abeille sortante et le nombre d abeille sortante avant la date sélectionné -->
+			<td>'. (($res['inTotal']-$res3['compteurEntree']) - ($res['outTotal']-$res3['compteurSortie'])) . '</td></td> <!-- on affiche la différence entre les 2 affichage précédent -->
 		  </tr>
 		</tbody>
 	  </table>
