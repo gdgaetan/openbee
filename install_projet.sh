@@ -11,8 +11,8 @@ fi
 
 echo "[*] Installation des logiciels nécessaires au programme: $SOFTWARES"
 
-apt-get update
-apt-get install -y $SOFTWARES
+#apt-get update
+#apt-get install -y $SOFTWARES
 
 echo "[*] Répertoire de configuration de motion: $MOTION_DIR"
 echo "[*] Décompression du projet dans $WWW_DIR ..."
