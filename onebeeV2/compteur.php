@@ -34,7 +34,7 @@ if ( isset($_SESSION['debut']))/*si l'utilisateur a renseigné la date à laquel
 			<td>'. ($res['inTotal'] - $res['outTotal']) . '</td> <!-- on affiche la différence entre les 2 affichage précédent -->
 		  </tr>
 		  <tr>
-			<td>'.$_SESSION['dateCourante'].'</td><!-- on affiche dapuis quelle date le comteur compte -->
+			<td>'.$_SESSION['dateCourante']->format('Y-m-d H:i').'</td><!-- on affiche dapuis quelle date le comteur compte -->
 			<td>' . ($res['inTotal']-$res3['compteurEntree']) . '</td> <!-- on affiche la différence entre le nombre total d abeille entrentre et le nombre d abeille entrente avant la date courante -->
 			<td>' . ($res['outTotal']-$res3['compteurSortie']) . '</td></td> <!-- on affiche la différence entre le nombre total d abeille sortante et le nombre d abeille sortante avant la date courante -->
 			<td>'. (($res['inTotal']-$res3['compteurEntree']) - ($res['outTotal']-$res3['compteurSortie'])) . '</td></td> <!-- on affiche la différence entre les 2 affichage précédent -->
