@@ -29,10 +29,11 @@
 		}
 		setInterval('afficher()', 500); // nombre de milisecondes entre deux rafraichissements : ici 0.5 secondes
 		
+		//exécute le code de la page session.php qui permet d'actualiser la date courante
 				function loadSession(){
 			$("#session").load("session.php");
 		}
-		
+		//lance la fonction loadSession lorsque l'on click sur le bouton qui  pour id update
 		$(function() {
 				$('#update').click(function() {				
 					loadSession();
@@ -76,12 +77,21 @@
 	</nav>
 	<!--Fin de la barre des menus -->
 	<?php 
-	session_start();
+	session_start();/*on démare une session pour les varriables de session que l'on va avoir*/
+	
+	/*la première fois ue l'on arrive sur la page flux.php la varriable qui contien la date courante
+	est vide donc on la remplie*/
+	if(empty($_POST['dateCourante']))
+	{
+		$_SESSION['dateCourante'] = date("Y-m-d H:i");
+	}
+	
+	/*si l'utilisateur a envoyé le formulaire on met la valeur dans la varrible de session*/
 	if(!empty($_POST['debut']))
 	{
 		$_SESSION['debut'] = $_POST['debut'];
 	}
-	else
+	else/*sinon on vide la varrible de session*/
 	{
 		unset($_SESSION['debut']);
 	}
@@ -99,6 +109,6 @@
 	<div id="compteur"> <!-- div dans laquelle on affiche compteur.php grâce au scrip -->
 	</div>
 	<button id="update">Mettre à jour la ligne 2</button>
-	<div id="session"></div>
+	<div id="session"></div><!-- div dans laquelle on exécute session.php grâce au scrip -->
 </body>
 </html>
