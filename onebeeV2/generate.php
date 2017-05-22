@@ -19,7 +19,7 @@
             $totalIn = $abeilleIn + $bourdonIn + $pollenIn + $totalIn;//on met à jour les abeille entrente avec les valeurs de la ligne que l'on vient de générer
             $totalOut = $abeilleOut + $bourdonOut + $totalOut;//on met à jour les abeille sortente avec les valeurs de la ligne que l'on vient de générer
 			//on éxécute une requette qui permet d'ajouter notre nouvelle ligne et on test si la requette s'éxécute correctement
-            if ($bdd->query("INSERT INTO onebee.abeille (idAbeille, dateEnregistrement, nbEntreesAbeille, nbSortiesAbeille, NBEFauxBourdon, NBSFauxBourdon, NBEAbeillePollen, compteurEntree, compteurSortie) VALUES (NULL, DATE_ADD(NOW(), INTERVAL $i MINUTE), $abeilleIn, $abeilleOut, $bourdonIn, $bourdonOut, $pollenIn, $totalIn, $totalOut);UPDATE compteur SET inTotal = ".$totalIn.", outTotal = ".$totalOut." WHERE idCompteur = 1;") === TRUE) {
+            if ($bdd->query("INSERT INTO abeille (idAbeille, dateEnregistrement, nbEntreesAbeille, nbSortiesAbeille, NBEFauxBourdon, NBSFauxBourdon, NBEAbeillePollen, compteurEntree, compteurSortie) VALUES (NULL, DATE_ADD(NOW(), INTERVAL $i MINUTE), $abeilleIn, $abeilleOut, $bourdonIn, $bourdonOut, $pollenIn, $totalIn, $totalOut);UPDATE compteur SET inTotal = ".$totalIn.", outTotal = ".$totalOut." WHERE idCompteur = 1;") === TRUE) {
                 echo "New record created successfully";//on affiche le message "New record created successfully" si la requette s'est bien éxécutée
             }
         }
