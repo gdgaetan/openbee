@@ -20,9 +20,9 @@ SET time_zone = "+00:00";
 -- Base de données :  `onebee`
 --
 
-CREATE DATABASE IF NOT EXISTS `onebee`;
+CREATE DATABASE IF NOT EXISTS `comptage_video`;
 
-USE onebee;
+USE comptage_video;
 
 -- --------------------------------------------------------
 
