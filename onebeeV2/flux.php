@@ -92,7 +92,7 @@
 	echo '<img alt="http://'.$IP.':'.$PORT.'/" src="http://'.$IP.':'.$PORT.'/">';
 	?>
 	<form action="flux.php" method="post">
-	date de début de la ligne 3</br>
+	date de début de la ligne 3 </br>
 	<input type="datetime-local" name="debut"  placeholder="mm/jj/aaaa hh:mm">
 	<button type="submit">changer</button>
 	</form>
