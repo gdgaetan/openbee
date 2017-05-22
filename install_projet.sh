@@ -37,4 +37,8 @@ echo "[*] Redémarrage d'apache2..."
 # Nécessaire pour prendre en compte l'installation de PDO pour mysql
 service apache2 restart;
 
+mkdir /var/run/motion
+chown motion:motion /var/run/motion/ -R
+chmod 777 /var/run/motion/ -R
+
 echo "[+] Installation terminée. Pensez à lancer motion pour avoir le flux vidéo."

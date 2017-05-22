@@ -81,9 +81,10 @@
 	
 	/*la première fois ue l'on arrive sur la page flux.php la varriable qui contien la date courante
 	est vide donc on la remplie*/
-	if(empty($_POST['dateCourante']))
+	if(empty($_SESSION['dateCourante']))
 	{
-		$_SESSION['dateCourante'] = date("Y-m-d H:i");
+		$_SESSION['dateCourante'] = new DateTime();
+		$_SESSION['dateCourante']->setTimezone(new DateTimeZone("Europe/Paris"));// pour avoir la bonne heure
 	}
 	
 	/*si l'utilisateur a envoyé le formulaire on met la valeur dans la varrible de session*/
