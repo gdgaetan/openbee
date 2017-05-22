@@ -19,6 +19,7 @@ if ( isset($_SESSION['debut']))/*si l'utilisateur a renseigné la date à laquel
 	  <table class="table">
 		<thead>
 		  <tr>
+			<th>Date</th>
 			<th>Entrées</th>
 			<th>Sorties</th>
 			<th>Différence</th>
@@ -57,6 +58,7 @@ else/*si l'utilisateur n'a pas renseigné de date*/
 	  <table class="table">
 		<thead>
 		  <tr>
+			<th>Date</th>
 			<th>Entrées</th>
 			<th>Sorties</th>
 			<th>Différence</th>

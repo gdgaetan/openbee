@@ -1,5 +1,5 @@
 .containerCompteur{
-	width:321px;/*empèche que le compteur face toute la largeur de la page*/
+	width:400px;/*empèche que le compteur face toute la largeur de la page*/
 	margin : 0 auto;/*permet de centrer le compteur*/
 }
 body{
