@@ -20,6 +20,10 @@ SET time_zone = "+00:00";
 -- Base de données :  `onebee`
 --
 
+CREATE DATABASE IF NOT EXISTS `onebee`;
+
+USE onebee;
+
 -- --------------------------------------------------------
 
 --
