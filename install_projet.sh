@@ -28,10 +28,14 @@ touch $MOTION_DIR/motion.conf
 chown motion:motion $MOTION_DIR/
 chown motion:motion $MOTION_DIR/motion.conf
 chmod 755 $MOTION_DIR/motion.conf
-echo "stream_maxrate 30" >> $MOTION_DIR/motion.conf
+echo "stream_maxrate 30" > $MOTION_DIR/motion.conf
 echo "stream_port 8081" >> $MOTION_DIR/motion.conf
 echo "stream_localhost off" >> $MOTION_DIR/motion.conf
 echo "output_pictures off" >> $MOTION_DIR/motion.conf
+
+echo "[*] Redémarrage d'apache2..."
+# Nécessaire pour prendre en compte l'installation de PDO pour mysql
+service apache2 restart;
 
 mkdir /var/run/motion
 chown motion:motion /var/run/motion/ -R
